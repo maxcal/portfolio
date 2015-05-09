@@ -35,6 +35,7 @@ module Portfolio
       g.test_framework :rspec
       g.integration_tool :rspec
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      g.view_specs = false
     end
   end
 end

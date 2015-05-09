@@ -24,7 +24,6 @@ class Authentication < ActiveRecord::Base
     )
   end
 
-
   # @param [Hash] auth_hash
   #   @see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
   # @return [User]

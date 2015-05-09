@@ -3,6 +3,7 @@ require 'support/omniauth'
 
 RSpec.describe Authentication do
   it { should validate_uniqueness_of :uid }
+  it { should belong_to :user }
 
   describe '.new_from_omniauth' do
     subject { Authentication.new_from_omniauth(mock_auth_hash) }

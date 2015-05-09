@@ -1,23 +1,42 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  sessions:
+    menu:
+      sign_in_with_flickr: 'Log in with Flickr'
+      sign_out: 'Log out'
+    flash:
+      you_have_been_signed_in: "You have successfully signed in via Flickr"
+      you_have_been_signed_out: "You have been signed out"
+  auth:
+    failure:
+      flashes:
+        default: 'Sign in failure, error: %{message}'
+        invalid_credentials: 'Invalid credentials'
+  users:
+    show:
+      edit_profile: 'Edit profile'
+    edit:
+      fields:
+        name: 'Full name'
+        nickname: 'Nickname'
+        email: 'Email'
+    index:
+      edit_user: 'Edit #{nickname}'
+  photosets:
+    new:
+      import: 'Import'
+      imported_photosets: 'Import photosets from Flickr'
+      nothing_to_import: 'No photosets found to import'
+    show:
+      edit: 'Edit'
+    edit:
+      editing_photoset: Editing %{title}
+      delete_photoset: Delete photoset
+      confirm_delete_photoset: Are you sure? Note that this does not remove the photoset from Flickr.
+    flash:
+      create:
+        success: 'Photoset imported'
+        failure: 'Photoset could not be imported'
+      update:
+        success: 'Photoset updated'
+      destroy:
+        success: 'Photoset deleted'
