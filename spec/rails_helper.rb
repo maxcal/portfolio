@@ -29,7 +29,6 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include Warden::Test::Helpers
-  config.include Mongoid::Matchers, type: :model
 
   Capybara.javascript_driver = :poltergeist
 
@@ -40,8 +39,8 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
-    DatabaseCleaner[:mongoid].strategy = :truncation
-    DatabaseCleaner[:mongoid].clean_with(:truncation)
+    DatabaseCleaner.clean_with(:truncation, pre_count: true)
+    DatabaseCleaner.strategy = :truncation
     Warden.test_mode!
     OmniAuth.config.test_mode = true
 

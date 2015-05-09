@@ -27,12 +27,6 @@ end
 group :development, :test do
   gem 'spring'
   gem 'dotenv-rails', '~> 2.0.0' # Loads env vars from .env file
-  gem 'database_cleaner', '~> 1.4.1'
-  gem 'rspec-rails', '~> 3.2.1'
-  gem "guard-rspec", "~> 4.5", require: false
-  gem 'guard-livereload', require: false
-  gem "terminal-notifier-guard", require: false # Show test status indicators on Mac OS X
-  gem "factory_girl_rails", "~> 4.4.1"
 end
 
 group :development do
@@ -40,15 +34,22 @@ group :development do
   gem 'better_errors' # better error pages
   gem 'meta_request' # used for RailsPanel in Google Chrome
   gem 'web-console'  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'guard-livereload', require: false
 end
 
 group :test do
+  gem 'rspec-rails', '~> 3.2.1'
+  gem 'rspec-its', '~> 1.2.0'
+  gem 'database_cleaner', '~> 1.4.1'
+  gem 'guard-rspec', '~> 4.5'
+  gem 'shoulda-matchers', '~> 2.8.0'
   gem 'webmock', '~> 1.20.4' # WebMock allows stubbing HTTP requests and setting expectations on HTTP requests.
   gem 'launchy', require: false # Opens browser with page Capybara is processing if we do `fail_and_save_page!`
   gem 'capybara', '~> 2.4.4'
-  gem 'rspec-its', '~> 1.2.0'
   gem 'vcr', '~> 2.9.3'
   gem 'poltergeist', '~> 1.6.0' # Phantom.js driver for Capybara
+  gem 'terminal-notifier-guard', require: false # Show test status indicators on Mac OS X
+  gem 'factory_girl_rails', '~> 4.4.1'
 end
 
 group :production do
