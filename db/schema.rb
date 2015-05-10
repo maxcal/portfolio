@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150509210726) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "authentications", ["uid"], name: "index_authentications_on_uid", unique: true, using: :btree
+  add_index "authentications", ["provider", "uid"], name: "index_authentications_on_provider_and_uid", unique: true, using: :btree
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|

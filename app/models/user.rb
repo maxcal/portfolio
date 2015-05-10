@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
 
   # @return [User]
   # @param [Hash] auth_hash
-  def self.create_from_omniauth(auth_hash)
-    create(attrs_from_omniauth(auth_hash))
+  def self.new_from_omniauth(auth_hash)
+    new(attrs_from_omniauth(auth_hash))
   end
 
   protected
