@@ -26,11 +26,13 @@ class Auth::CallbacksController < ApplicationController
       @user = User.new_from_omniauth(@auth_hash)
       @auth.user = @user
       @auth.save!
+      if @user == User.first
+        @user.add_role(:admin)
+      end
     end
 
     # sign in the user
     request.env['warden'].set_user @user
     redirect_to :root, notice: t('sessions.flash.you_have_been_signed_in')
   end
-
 end

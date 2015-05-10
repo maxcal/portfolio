@@ -36,6 +36,10 @@ RSpec.describe Auth::CallbacksController, type: :controller do
       expect(warden).to receive(:set_user).with(an_instance_of(User))
       get :flickr
     end
+    it "makes the user an admin if it is the first user" do
+      get :flickr
+      expect(assigns(:user).has_role?(:admin)).to be_truthy
+    end
   end
 
   describe "GET #failure" do
