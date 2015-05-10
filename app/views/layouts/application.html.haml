@@ -9,4 +9,12 @@
     = javascript_include_tag "application", 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body{ data: { controller: controller_name, action: action_name } }
-    =yield
+    %header
+      %ul.flashes
+        - flash.each do |key,msg|
+          %li= msg
+
+
+      =render(partial: 'sessions/menu')
+    .main
+      =yield

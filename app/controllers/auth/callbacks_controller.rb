@@ -1,21 +1,29 @@
 class Auth::CallbacksController < ApplicationController
   def flickr
+    @auth_hash = request.env['omniauth.auth']
+    @auth = Authentication.joins(:user).find_by(uid: @auth_hash[:uid], provider: 'flickr')
 
-    auth_hash = request.env['omniauth.auth']
-
-    @user = User.joins(:authentications).find_by(
-        'authentications.uid' => auth_hash[:uid],
-        'authentications.provider' => 'flickr'
-    )
-    unless @user
-      user = User.create_from_omniauth(auth_hash)
-      user.authentications << Authentication.new_from_omniauth(auth_hash)
+    unless @auth
+      @auth = Authentication.create_from_omniauth(@auth_hash)
     end
 
+    unless @auth.user
+      @user = User.create_from_omniauth(@auth_hash)
+      @auth.user = @user
+      @auth.save!
+    end
+
+    # sign in the user
     request.env['warden'].set_user @user
     redirect_to :root, notice: t('sessions.flash.you_have_been_signed_in')
   end
 
+  # Failed authentications get patched through to this action
   def failure
+    flash[:alert] = t(
+        "auth.failure.flashes.#{params[:message]}",
+        default: t('auth.failure.flashes.default', message: params[:message])
+    )
+    redirect_to root_path
   end
 end

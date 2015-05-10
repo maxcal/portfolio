@@ -37,5 +37,7 @@ module Portfolio
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
       g.view_specs = false
     end
+
+    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager
   end
 end

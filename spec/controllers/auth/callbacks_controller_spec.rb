@@ -33,8 +33,13 @@ RSpec.describe Auth::CallbacksController, type: :controller do
       }.to_not change(User, :count)
     end
     it "signs in the user", skip_request: true do
-      expect(warden).to receive(:set_user).with(assigns(:user))
+      expect(warden).to receive(:set_user).with(an_instance_of(User))
       get :flickr
     end
+  end
+
+  describe "GET #failure" do
+    before { |example| get :failure unless example.metadata[:skip_request] }
+    it { should redirect_to root_path }
   end
 end
