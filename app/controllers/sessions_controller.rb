@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def destroy
-    request.env['warden'].logout
+    sign_out!
     redirect_to root_path, notice: t('sessions.flash.you_have_been_signed_out')
   end
 

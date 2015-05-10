@@ -7,7 +7,7 @@ Portfolio::Application.routes.draw do
     get '/failure', to: 'callbacks#failure'
   end
 
-  resources :users, only: [:show, :index, :edit, :update] do
+  resources :users, except: [:new] do
     collection do
       resource :sessions, only: [:new, :destroy]
     end

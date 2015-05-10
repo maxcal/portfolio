@@ -21,6 +21,11 @@ en:
         email: 'Email'
     index:
       edit_user: 'Edit #{nickname}'
+    flash:
+      destroy:
+        success: 'User deleted'
+        success_self: 'We are sorry to see you go, come back any time'
+
   photosets:
     new:
       import: 'Import'
