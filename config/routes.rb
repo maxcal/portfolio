@@ -12,5 +12,4 @@ Portfolio::Application.routes.draw do
       resource :sessions, only: [:new, :destroy]
     end
   end
-
 end

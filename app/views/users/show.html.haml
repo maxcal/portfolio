@@ -1,0 +1,5 @@
+%h1= @user.name
+
+- if can? :edit, @user
+  %ul.actions
+    %li.edit= link_to(t('.edit_profile'), edit_user_path(@user))

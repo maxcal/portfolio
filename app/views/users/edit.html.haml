@@ -1,0 +1,6 @@
+= simple_form_for @user do |f|
+  = f.input :nickname
+  = f.input :name
+  = f.input :email
+  = f.association :roles, as: :check_boxes, collection: Role.all.to_a, label_method: :name
+  = f.button :submit
