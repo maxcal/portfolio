@@ -5,29 +5,38 @@ RSpec.describe PhotosetsController, type: :controller do
 
   subject { response }
   let(:photoset) { create(:photoset) }
+  let(:params) {|e| {format: e.metadata[:format]}}
 
   before do |example|
     set_current_user(example.metadata[:valid_session] ? create(:admin) : nil)
   end
 
   describe 'GET #show' do
-    before { get :show, id: photoset }
+    before { |e| get :show, id: photoset, format: e.metadata[:format] }
     it { should have_http_status :success }
     it { should render_template :show }
     it "assigns Photoset as @photoset" do
       expect(assigns(:photoset)).to eq photoset
     end
+
+    context 'as JSON', format: :json do
+      it { should have_http_status :success }
+    end
   end
 
   describe 'GET #index' do
-    before do
+    before do |e|
       photoset
-      get :index
+      get :index, format: e.metadata[:format]
     end
     it { should have_http_status :success }
     it { should render_template :index }
     it "assigns photosets as @photosets" do
       expect(assigns(:photosets).first).to eq photoset
+    end
+
+    context 'as JSON', format: :json do
+      it { should have_http_status :success }
     end
   end
 
@@ -38,7 +47,7 @@ RSpec.describe PhotosetsController, type: :controller do
     end
 
     context 'when authorized', valid_session: true do
-      before { get :new }
+      before { |e| get :new }
       it { should have_http_status :success }
       it { should render_template :new }
       it "assigns photosets as @photosets" do
@@ -48,7 +57,7 @@ RSpec.describe PhotosetsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:action) { post :create, photoset: attributes_for(:photoset) }
+    let(:action) { |e| post :create, photoset: attributes_for(:photoset), format: e.metadata[:format] }
 
     it_should_behave_like "an authorized action"
 
@@ -69,16 +78,18 @@ RSpec.describe PhotosetsController, type: :controller do
       context 'with invalid params', invalid: true do
         it { should render_template :new }
       end
+      context 'as JSON', format: :json do
+        let(:action) { |e| post :create, photoset: attributes_for(:photoset), format: :json }
+        it { should have_http_status :created }
+      end
     end
   end
 
   describe 'GET #edit' do
     let(:action) { get :edit, id: photoset }
     it_should_behave_like "an authorized action"
-
     context 'when authorized', valid_session: true do
       before { action }
-
 
       it { should have_http_status :success }
       it { should render_template :edit }
@@ -89,8 +100,10 @@ RSpec.describe PhotosetsController, type: :controller do
   end
 
   describe 'POST #update' do
-    let(:action) do
-      patch :update, id: photoset, photoset: { title: 'Updated Title', description: 'Updated Description' }
+    let(:action) do |e|
+      patch :update, id: photoset,
+                     photoset: { title: 'Updated Title', description: 'Updated Description' },
+                     format: e.metadata[:format]
     end
 
     it_should_behave_like "an authorized action"
@@ -118,6 +131,10 @@ RSpec.describe PhotosetsController, type: :controller do
           expect(photoset.reload.title).to_not eq assigns(:photoset).title
         end
       end
+
+      context 'as JSON', format: :json do
+        it { should have_http_status :no_content }
+      end
     end
   end
 
@@ -134,6 +151,10 @@ RSpec.describe PhotosetsController, type: :controller do
         expect(assigns(:photoset).destroyed?).to be_truthy
       end
       it { should redirect_to action: :index }
+
+      context 'as JSON', format: :json do
+        it { should have_http_status :found }
+      end
     end
   end
 end

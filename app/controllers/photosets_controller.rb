@@ -1,34 +1,43 @@
 class PhotosetsController < ApplicationController
   load_and_authorize_resource
+  respond_to :html, :json
 
-  def show; end
-  def index; end
-  def new; end
+  def show
+    respond_with(@photoset)
+  end
+  def index
+    respond_with(@photoset)
+  end
+  def new
+    respond_with(@photoset)
+  end
 
   def create
-    if @photoset.save
-      redirect_to @photoset
-    else
-      render action: :new
+    respond_with @photoset do |format|
+      if @photoset.save
+        format.html { redirect_to @photoset }
+      else
+        format.html { render action: :new }
+      end
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
-    if @photoset.update(photoset_params)
-      redirect_to @photoset
-    else
-      render action: :edit
+    respond_with @photoset do |format|
+      if @photoset.update(photoset_params)
+        format.html { redirect_to @photoset }
+      else
+        format.html { render action: :edit }
+      end
     end
   end
 
   def destroy
-    if @photoset.destroy
-      redirect_to photosets_path
-    else
-      redirect_to @photoset
-    end
+    @photoset.destroy
+    respond_with(@photoset)
   end
 
   def photoset_params
