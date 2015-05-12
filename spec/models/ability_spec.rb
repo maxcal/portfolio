@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'cancan/matchers'
 
 RSpec.describe Ability do
-
   let(:user) { build_stubbed(:user) }
   let(:ability) { Ability.new(user) }
   subject { ability }
