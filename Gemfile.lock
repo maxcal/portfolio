@@ -313,6 +313,7 @@ DEPENDENCIES
   poltergeist (~> 1.6.0)
   rails (= 4.2.0)
   rails_12factor (~> 0.0.3)
+  rb-fsevent
   rolify (~> 4.0.0)
   rspec-its (~> 1.2.0)
   rspec-rails (~> 3.2.1)

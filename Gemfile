@@ -50,9 +50,12 @@ group :test do
   gem 'capybara', '~> 2.4.4'
   gem 'vcr', '~> 2.9.3'
   gem 'poltergeist', '~> 1.6.0' # Phantom.js driver for Capybara
-  gem 'terminal-notifier-guard', require: false # Show test status indicators on Mac OS X
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'spring-commands-rspec', '~> 1.0.4'
+  if `uname` =~ /Darwin/
+    gem 'terminal-notifier-guard'
+    gem 'rb-fsevent'
+  end
 end
 
 group :production do
