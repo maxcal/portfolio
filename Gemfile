@@ -52,6 +52,7 @@ group :test do
   gem 'poltergeist', '~> 1.6.0' # Phantom.js driver for Capybara
   gem 'terminal-notifier-guard', require: false # Show test status indicators on Mac OS X
   gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'spring-commands-rspec', '~> 1.0.4'
 end
 
 group :production do
