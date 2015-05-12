@@ -6,9 +6,10 @@ RSpec.describe PhotosetsController, type: :controller do
   subject { response }
   let(:photoset) { create(:photoset) }
   let(:params) {|e| {format: e.metadata[:format]}}
+  let(:admin) { create(:admin) }
 
   before do |example|
-    set_current_user(example.metadata[:valid_session] ? create(:admin) : nil)
+    set_current_user(example.metadata[:valid_session] ? admin : nil)
   end
 
   describe 'GET #show' do
@@ -31,7 +32,7 @@ RSpec.describe PhotosetsController, type: :controller do
     end
     it { should have_http_status :success }
     it { should render_template :index }
-    it "assigns photosets as @photosets" do
+    it 'assigns photosets as @photosets' do
       expect(assigns(:photosets).first).to eq photoset
     end
 
@@ -42,7 +43,7 @@ RSpec.describe PhotosetsController, type: :controller do
 
   describe 'GET #new' do
 
-    it_should_behave_like "an authorized action" do
+    it_should_behave_like 'an authorized action' do
       let(:action) { get :new }
     end
 
@@ -68,12 +69,17 @@ RSpec.describe PhotosetsController, type: :controller do
         action unless example.metadata[:skip_request]
       end
       context 'with valid params' do
-        it "creates a photoset", skip_request: true do
+        it 'creates a photoset', skip_request: true do
           expect {
             action
           }.to change(Photoset, :count).by(+1)
+          expect(assigns(:photoset)).to be_persisted
         end
         it { should redirect_to assigns(:photoset) }
+
+        it 'assigns user to photoset' do
+          expect(assigns(:photoset).user).to eq admin
+        end
       end
       context 'with invalid params', invalid: true do
         it { should render_template :new }
@@ -87,7 +93,7 @@ RSpec.describe PhotosetsController, type: :controller do
 
   describe 'GET #edit' do
     let(:action) { get :edit, id: photoset }
-    it_should_behave_like "an authorized action"
+    it_should_behave_like 'an authorized action'
     context 'when authorized', valid_session: true do
       before { action }
 

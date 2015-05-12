@@ -13,6 +13,7 @@ class PhotosetsController < ApplicationController
   end
 
   def create
+    @photoset.user = current_user
     respond_with @photoset do |format|
       if @photoset.save
         format.html { redirect_to @photoset }
