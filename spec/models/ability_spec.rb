@@ -9,13 +9,14 @@ RSpec.describe Ability do
 
   context 'guest users' do
     it { should be_able_to :read, User }
+    it { should be_able_to :read, Photoset }
     it { should be_able_to :crud, user }
     it { should_not be_able_to :crud, User }
+    it { should_not be_able_to :crud, Photoset }
   end
 
   context 'admins' do
-    before do
-      user.add_role(:admin)
-    end
+    let(:user) { build_stubbed(:admin) }
+    it { should be_able_to :crud, Photoset }
   end
 end

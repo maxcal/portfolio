@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 20150512110141) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "flickr_uid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "photosets", ["user_id"], name: "index_photosets_on_user_id", using: :btree

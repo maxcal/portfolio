@@ -7,5 +7,11 @@ class Ability
     user ||= User.new # guest user (not logged in)
     can :read, User
     can :crud, user # Users should be able to manage their own account.
+    can :read, Photoset
+
+    if user.has_role?(:admin)
+      can :crud, Photoset
+    end
+
   end
 end

@@ -43,5 +43,7 @@ en:
         failure: 'Photoset could not be imported'
       update:
         success: 'Photoset updated'
+        failure: 'Could not update photoset'
       destroy:
         success: 'Photoset deleted'
+        failure: 'Could not delete photoset'

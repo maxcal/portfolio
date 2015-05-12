@@ -6,5 +6,10 @@ FactoryGirl.define do
     nickname "jbloggs"
     email "jbloggs@example.com"
     flickr_uid "abc123456"
+
+    factory :admin do
+      after(:build)  { |user| user.add_role(:admin) }
+      after(:stub)  { |user| user.add_role(:admin) }
+    end
   end
 end

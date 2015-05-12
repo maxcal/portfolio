@@ -12,4 +12,9 @@ Portfolio::Application.routes.draw do
       resource :sessions, only: [:new, :destroy]
     end
   end
+
+  resources :photosets do
+
+  end
+
 end
