@@ -4,16 +4,38 @@
     %meta{ charset: 'utf-8' }
     %meta{ name:"viewport", content:"width=device-width, initial-scale=1.0" }
     %title= content_for?(:title) ? yield(:title) : "App_Name"
-    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Raleway:400,700,300'
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "vendor/modernizr"
-    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    - cache do
+      = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Raleway:400,700,300'
+      = stylesheet_link_tag "application"
+      = javascript_include_tag "vendor/modernizr"
+      = javascript_include_tag "application", 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body{ data: { controller: controller_name, action: action_name } }
-    %header
-      %ul.flashes
+    .wrapper
+      %header
+        .contain-to-grid
+          %nav.top-bar{data: { topbar: true }}
+            - cache do
+              %ul.title-area
+                %li.name
+                  %h1= link_to 'Portfolio', root_path
+                %li.toggle-topbar.menu-icon
+                  %a{ href: '#' }
+                    %span Menu
+            %section.top-bar-section
+              %ul.left
+                %li.has-dropdown
+                  %a.fi-unlock{href: '#'}
+                    %span.show-for-sr 'Log in and out'
+                  =render partial: 'sessions/menu'
+      .flashes
         - flash.each do |key,msg|
-          %li= msg
-      =render(partial: 'sessions/menu')
-    .main.row
-      =yield
+          %div{ class: "alert-box #{key} flash"}
+            %p.row= msg
+      .main.row
+        =yield
+      .push
+  %footer.footer
+    .row
+      %p
+        Images hosted by flickr.

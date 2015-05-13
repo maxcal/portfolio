@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require underscore
 //= require_self
 //= require_tree .
 
@@ -61,6 +62,17 @@ $(function(){
             .html(message);
 
         $(this).find('.flashes').append($flash);
+    });
+
+    // Sticky footer
+    // http://blog.karenmenezes.com/2014/jan/14/ryan-faits-sticky-footer-responsive/
+    $(document).ready(function(){
+        var $footer = $('.footer'), $push = $('.push'), $wrapper = $('.wrapper');
+        $(window).resize(_.throttle(function(){
+            var footerHeight = $footer.outerHeight();
+            $push.height(footerHeight);
+            $wrapper.css({'marginBottom':'-' + footerHeight + 'px'});
+        }, 50)).resize();
     });
 
 }($(document)));

@@ -1,7 +1,6 @@
-#nav.sessions-menu
-  %ul
-    - if signed_in?
-      %li= link_to(current_user.nickname, user_path(current_user.to_param))
-      %li= link_to(t('.sign_out'), sessions_path, method: :delete)
-    - else
-      %li= link_to(t('.sign_in_with_flickr'), '/auth/flickr')
+%ul.sessions-menu.dropdown
+  - if signed_in?
+    %li= link_to(current_user.nickname, user_path(current_user.to_param))
+    %li= link_to(t('.sign_out'), sessions_path, method: :delete)
+  - else
+    %li= link_to(t('.sign_in_with_flickr'), '/auth/flickr')

@@ -12,7 +12,8 @@ gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'simple_form', '~> 3.1.0'
 gem 'foundation-rails', '~> 5.5.2.1'
 gem 'turbolinks', '~> 2.5.3'
-gem 'sprockets-strict-mode'
+gem 'foundation-icons-sass-rails', '~> 3.0.0'
+gem 'underscore-rails', '~> 1.8.2'
 
 #=== Database ==============================
 gem 'pg', '~> 0.18.1'
