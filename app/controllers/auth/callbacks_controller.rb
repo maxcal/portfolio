@@ -32,7 +32,7 @@ class Auth::CallbacksController < ApplicationController
     end
 
     # sign in the user
-    request.env['warden'].set_user @user
+    sign_in @auth.user
     redirect_to :root, notice: t('sessions.flash.you_have_been_signed_in')
   end
 end
