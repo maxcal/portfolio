@@ -5,11 +5,14 @@ class PhotosetsController < ApplicationController
   def show
     respond_with(@photoset)
   end
+
   def index
     respond_with(@photoset)
   end
+
   def new
-    respond_with(@photoset)
+    @photosets = Photoset.import(user: current_user).select(&:new_record?)
+    respond_with(@photosets)
   end
 
   def create

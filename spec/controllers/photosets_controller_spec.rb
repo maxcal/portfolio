@@ -48,11 +48,14 @@ RSpec.describe PhotosetsController, type: :controller do
     end
 
     context 'when authorized', valid_session: true do
-      before { |e| get :new }
+      before do |e|
+        VCR.use_cassette('photosets_import') { get :new }
+      end
+
       it { should have_http_status :success }
       it { should render_template :new }
       it "assigns photosets as @photosets" do
-        expect(assigns(:photoset)).to be_a Photoset
+        expect(assigns(:photosets).first).to be_a Photoset
       end
     end
   end
