@@ -5,10 +5,11 @@ RSpec.describe Photoset, type: :model do
   it { should validate_uniqueness_of :title }
 
   describe '.import' do
+    let(:user) { create(:user) }
     let(:photosets) do
       sets = nil
       VCR.use_cassette('photosets_import') do
-        sets = Photoset.import(user_id: '62829091@N05')
+        sets = Photoset.import(user: user)
       end
       sets
     end
@@ -24,11 +25,13 @@ RSpec.describe Photoset, type: :model do
     it "sets the description" do
       expect(photosets.first.description).to eq 'Test description'
     end
-
+    it "sets the user" do
+      expect(photosets.first.user).to eq user
+    end
     it "yields the results and raw data to a block" do
       sets = nil
       VCR.use_cassette('photosets_import') do
-        sets = Photoset.import(user_id: '62829091@N05') do |set, raw|
+        sets = Photoset.import(user: user) do |set, raw|
           set.title = raw["title"].reverse
         end
       end
