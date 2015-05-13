@@ -1,0 +1,27 @@
+-#<%- if @photosets.any? -%>
+-#  <%= simple_form_for :photosets, url: photosets_path, html: { id: 'import_photosets_form' } do |form| %>
+-#    <%- @photosets.each do |ps, i| -%>
+-#      <%= simple_fields_for ps do |f| %>
+-#      <fieldset class="photoset" data-flash-success="<%= t('photosets.flash.create.success', title: ps.title) %>" data-flash-failure="<%= t('photosets.flash.create.failure', title: ps.title) %>">
+-#        <legend><%= ps.title %></legend>
+-#        <%- if ps.new_record? -%>
+-#        <%= f.input :title, as: :hidden, input_html: { class: "title", id: "photoset_title_#{ps.flickr_uid}" } %>
+-#        <%= f.input :flickr_uid, as: :hidden, input_html: { class: "flickr_uid", id: "photoset_uid_#{ps.flickr_uid}" } %>
+-#        <%= f.button :submit %>
+-#        <%- end -%>
+-#      </fieldset>
+-#      <% end %>
+-#    <% end %>
+-#  <%- end -%>
+-#<%- end -%>
+= simple_form_for :photosets, url: photosets_path, html: { id: 'import_photosets_form' } do |form|
+  - @photosets.each do |photoset, i|
+    =   simple_fields_for photoset do |f|
+      %fieldset.photoset
+        %legend= photoset.title
+        = field_for_photoset(photoset, :flickr_uid)
+        = field_for_photoset(photoset, :title)
+        = field_for_photoset(photoset, :description)
+        = field_for_photoset(photoset, :user_id)
+        = f.input :title
+        = f.button :submit
