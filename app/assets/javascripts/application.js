@@ -16,7 +16,6 @@
 //= require turbolinks
 //= require_self
 //= require_tree .
-'use strict';
 
 $(function(){
     $(document).foundation();

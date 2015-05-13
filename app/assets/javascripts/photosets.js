@@ -1,5 +1,3 @@
-'use strict';
-
 (function($doc){
     $doc.on('portfolio.photosets.new:change', function(){
         $('#import_photosets_form').on('click', 'input[type="submit"]', function(){
