@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: user_id=62829091%40N05&method=flickr.photosets.getList&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - FlickRaw/0.9.8
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="7d48f7eacbb2cc9033c2e84b7f1b1d1b",
+        oauth_nonce="a47R%2BSVYoBnRlp2hbaIT0LsR8L7wU9FdnzdJceqgp1w%3D", oauth_signature="2ab73df317f343e1%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1431512281", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 13 May 2015 10:17:57 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '881'
+      P3p:
+      - policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      Cache-Control:
+      - private
+      X-Served-By:
+      - www-bm014.flickr.bf1.yahoo.com
+      Vary:
+      - Accept-Encoding
+      Age:
+      - '0'
+      Via:
+      - http/1.1 fts103.flickr.bf1.yahoo.com (ApacheTrafficServer [cMsSf ]), http/1.1
+        r06.ycpi.dea.yahoo.net (ApacheTrafficServer [cMsSf ])
+      Server:
+      - ATS
+      Strict-Transport-Security:
+      - max-age=259200
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"photosets":{"page":1,"pages":1,"perpage":10,"total":10,"photoset":[{"id":"72157647753138397","primary":"13362508473","secret":"73945d3830","server":"7300","farm":8,"photos":"10","videos":0,"title":{"_content":"Showcase"},"description":{"_content":"Test description"},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"0","count_comments":"0","can_comment":0,"date_create":"1411992696","date_update":"1420398843"},{"id":"72157642806447225","primary":"13362324935","secret":"792aed9e58","server":"7072","farm":8,"photos":"11","videos":0,"title":{"_content":"Offpistcamp,
+        Mars 2014"},"description":{"_content":""},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"18","count_comments":"0","can_comment":0,"date_create":"1395604793","date_update":"1420398843"},{"id":"72157635592985815","primary":"9789159454","secret":"68e3687ebf","server":"7304","farm":8,"photos":"49","videos":0,"title":{"_content":"Sara
+        & Adam\u00b4s wedding "},"description":{"_content":""},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"36","count_comments":"0","can_comment":0,"date_create":"1379447652","date_update":"1379448808"},{"id":"72157633225753747","primary":"8643524170","secret":"d31134cfac","server":"8387","farm":9,"photos":"11","videos":0,"title":{"_content":"\u00c5re
+        Park"},"description":{"_content":""},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"0","count_comments":"0","can_comment":0,"date_create":"1365784604","date_update":"1365784720"},{"id":"72157632691639823","primary":"8446828475","secret":"c27f229c79","server":"8079","farm":9,"photos":"5","videos":0,"title":{"_content":"\u00c5resj\u00f6n"},"description":{"_content":""},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"0","count_comments":"0","can_comment":0,"date_create":"1360071999","date_update":"1360072052"},{"id":"72157632228500139","primary":"8266649775","secret":"bea16448f6","server":"8337","farm":9,"photos":"36","videos":0,"title":{"_content":"Renskiljning"},"description":{"_content":""},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"9","count_comments":"0","can_comment":0,"date_create":"1355334260","date_update":"1365536767"},{"id":"72157632141702707","primary":"8234153651","secret":"82b1bababb","server":"8487","farm":9,"photos":"11","videos":0,"title":{"_content":"Ozone
+        Demodag 2012"},"description":{"_content":""},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"30","count_comments":"0","can_comment":0,"date_create":"1354372862","date_update":"1354373227"},{"id":"72157629510040228","primary":"6956421098","secret":"fe55925613","server":"7197","farm":8,"photos":"14","videos":0,"title":{"_content":"Slutskjutet
+        p\u00e5 Skutskjutet"},"description":{"_content":""},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"4","count_comments":"0","can_comment":0,"date_create":"1335109758","date_update":"1335109926"},{"id":"72157626719466442","primary":"5719219791","secret":"5966d75b4d","server":"2128","farm":3,"photos":"4","videos":0,"title":{"_content":"Trondheim"},"description":{"_content":""},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"1","count_comments":"0","can_comment":0,"date_create":"1305400311","date_update":"1354372544"},{"id":"72157626594657331","primary":"5719668226","secret":"d5c9c6e1bd","server":"2593","farm":3,"photos":"15","videos":0,"title":{"_content":"Rope
+        Swing Session"},"description":{"_content":"Oslo, norway"},"needs_interstitial":0,"visibility_can_see_set":1,"count_views":"8","count_comments":"0","can_comment":0,"date_create":"1305398192","date_update":"1305398195"}]},"stat":"ok"}'
+    http_version: 
+  recorded_at: Wed, 13 May 2015 10:18:01 GMT
+recorded_with: VCR 2.9.3
