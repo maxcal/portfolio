@@ -1,3 +1,5 @@
-%ul
-  - @photosets.each do |ps|
-  %li= link_to ps.title, ps
+.photosets
+- @photosets.each do |photoset|
+  %article.photoset
+    %h3= link_to(photoset.title, photoset)
+    .description= photoset.description
