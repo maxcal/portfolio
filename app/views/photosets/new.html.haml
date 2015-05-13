@@ -25,3 +25,5 @@
         = field_for_photoset(photoset, :user_id)
         = f.input :title
         = f.button :submit
+        %p.message.success.invisible= t('photosets.flash.create.success', title: photoset.title)
+        %p.message.failure.invisible= t('photosets.flash.create.failure', title: photoset.title)
