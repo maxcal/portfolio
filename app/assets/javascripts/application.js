@@ -14,11 +14,12 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require_self
 //= require_tree .
 'use strict';
 
 $(function(){
-    $doc.foundation();
+    $(document).foundation();
 });
 /**
  * Fire custom events when Turbolinks loads and unloads pages
@@ -26,10 +27,10 @@ $(function(){
  *
  * So if the request is for Users#Show this will fire:
  *
- *   portfolio.myapp.show:change
- *   portfolio.myapp:change
- *   portfolio.myapp:after-remove
- *   portfolio.myapp.show:after-remove
+ *   portfolio.users.show:change
+ *   portfolio.users:change
+ *   portfolio.users:after-remove
+ *   portfolio.users.show:after-remove
  *
  * Note that the controller name is the last part of the controller’s name, underscored, without the ending Controller
  * @see http://apidock.com/rails/ActionController/Metal/controller_name/class
@@ -39,7 +40,7 @@ $(function(){
 (function($doc){
     var add_triggers = function(event){
         var $b = $('body');
-        var namespaces = ['myapp', $b.data('controller')];
+        var namespaces = ['portfolio', $b.data('controller')];
         $doc.trigger(namespaces.join('.') + event);
         namespaces.push($b.data('action'));
         $doc.trigger(namespaces.join('.') + event);
