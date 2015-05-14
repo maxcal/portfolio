@@ -5,5 +5,6 @@ class CreatePhotos < ActiveRecord::Migration
       t.string :title
       t.timestamps null: false
     end
+    add_index(:photos, :flickr_uid)
   end
 end

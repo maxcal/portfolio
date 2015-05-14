@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :photo do
-    flickr_uid "MyString"
+    sequence(:flickr_uid, 123){ |n| "FID#{n}" }
   end
 end

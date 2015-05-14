@@ -1,8 +1,9 @@
 class Photoset < ActiveRecord::Base
   belongs_to :user
+  has_many :photos
+
   validates_uniqueness_of :flickr_uid
   validates_uniqueness_of :title
-
 
   # Imports photosets from `flickr.photosets.getList`.
   # The user_id params is required - any additional hash arguments will be forwarded to
