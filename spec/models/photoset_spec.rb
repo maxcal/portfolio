@@ -4,6 +4,9 @@ RSpec.describe Photoset, type: :model do
   it { should validate_uniqueness_of :flickr_uid }
   it { should validate_uniqueness_of :title }
 
+  it { should have_and_belong_to_many :photos }
+  it { should belong_to :primary_photo }
+
   describe '.import' do
     let(:user) { create(:user) }
     let(:photosets) do
