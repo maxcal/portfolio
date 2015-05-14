@@ -4,8 +4,10 @@ class Photoset < ActiveRecord::Base
   # We define the relationsship as belongs_to instead of has_one
   # since we want to store the foreign key on photosets - not photo.
   belongs_to :primary_photo, class_name: 'Photo'
-  validates_uniqueness_of :flickr_uid
+  accepts_nested_attributes_for :primary_photo
+  validates_uniqueness_of :flickr_uid, nil: false
   validates_uniqueness_of :title
+
   # Imports photosets from `flickr.photosets.getList`.
   # The user_id params is required - any additional hash arguments will be forwarded to
   # @param [User] user
