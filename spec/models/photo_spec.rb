@@ -20,7 +20,7 @@ RSpec.describe Photo, type: :model do
         "datetaken"=>"2014-03-22    17=>48=>30",
         "datetakengranularity"=>"0",
         "datetakenunknown"=>0,
-        "url_sq"=>"sq.jpg",
+        "url_q"=>"sq.jpg",
         "height_sq"=>75,
         "width_sq"=>75,
         "url_t"=>"t.jpg",

@@ -30,7 +30,7 @@ RSpec.describe Photoset, type: :model do
       expect(photosets.first.title).to eq 'Showcase'
     end
     it "sets the description" do
-      expect(photosets.first.description).to eq 'Test description'
+      expect(photosets.first.description).to eq "Like a greatest hits collection, but with snow."
     end
     it "sets the user" do
       expect(photosets.first.user).to eq user

@@ -15,7 +15,7 @@ class Photo < ActiveRecord::Base
     raw.slice(:title).merge(
         flickr_uid: raw[:id],
         small: raw[:url_s],
-        square: raw[:url_sq],
+        square: raw[:url_q],
         medium: raw[:url_m],
         original: raw[:url_o],
         datetaken: raw[:datetaken]
