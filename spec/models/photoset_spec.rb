@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Photoset, type: :model do
+
   it { should validate_uniqueness_of :flickr_uid }
   it { should validate_uniqueness_of :title }
 
@@ -13,7 +14,7 @@ RSpec.describe Photoset, type: :model do
   end
 
   describe '.import' do
-    let(:user) { create(:user) }
+    let(:user) { create(:user, flickr_uid: '62829091@N05') }
     let(:photosets) do
       sets = nil
       VCR.use_cassette('photosets_import') do
@@ -44,6 +45,9 @@ RSpec.describe Photoset, type: :model do
         end
       end
       expect(sets.first.title).to eq 'Showcase'.reverse
+    end
+    it 'imports the primary photo' do
+      expect(photosets.first.primary_photo).to be_a Photo
     end
   end
 end

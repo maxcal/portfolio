@@ -32,13 +32,13 @@ $form-label-font-color: $silver;
 // We use these to style the fieldset border and spacing.
 // $fieldset-border-style: solid;
 // $fieldset-border-width: 1px;
-// $fieldset-border-color: $gainsboro;
+$fieldset-border-color: $steel;
 // $fieldset-padding: rem-calc(20);
 // $fieldset-margin: rem-calc(18 0);
 
 // We use these to style the legends when you use them
-// $legend-bg: $white;
-// $legend-font-weight: $font-weight-bold;
+$legend-bg: none;
+$legend-font-weight: normal;
 // $legend-padding: rem-calc(0 3);
 
 // We use these to style the prefix and postfix input elements

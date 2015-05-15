@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe 'photosets/new.html.haml' do
 
   let(:user) { build_stubbed(:user) }
-  let(:photosets) { (1..5).map { build_stubbed(:photoset, user: user) } }
+  let(:photosets) { (1..5).map { build_stubbed(:photoset, user: user, primary_photo: build_stubbed(:photo)) } }
   let(:page){ Capybara::Node::Simple.new(rendered) }
 
   before do

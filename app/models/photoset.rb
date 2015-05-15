@@ -15,12 +15,23 @@ class Photoset < ActiveRecord::Base
   # @yield [photoset, raw_data]
   #   @yieldreturn [Photoset]
   def self.import user:, **kwargs, &block
-    result = flickr.photosets.getList(user_id: user.flickr_uid)
+    options = kwargs.merge(
+        user_id: user.flickr_uid,
+        primary_photo_extras: 'url_sq, url_t, url_s, url_m, url_o'
+    )
+    result = flickr.photosets.getList(options)
     photosets = result.map do |raw|
       set = create_with(
           title: raw["title"],
           description: raw["description"],
-          user: user
+          user: user,
+          primary_photo_attributes: {
+              flickr_uid: raw['primary'],
+              url_s: raw['primary_photo_extras']['url_s'],
+              url_sq: raw['primary_photo_extras']['url_sq'],
+              url_m: raw['primary_photo_extras']['url_m'],
+              url_o: raw['primary_photo_extras']['url_o'],
+          }
       ).find_or_initialize_by(flickr_uid: raw["id"])
       yield(set, raw) if block_given?
       set

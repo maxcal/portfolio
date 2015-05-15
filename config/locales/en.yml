@@ -29,7 +29,7 @@ en:
   photosets:
     new:
       import: 'Import'
-      imported_photosets: 'Import photosets from Flickr'
+      import_from_flickr: 'Import photosets from Flickr'
       nothing_to_import: 'No photosets found to import'
     show:
       edit: 'Edit'
