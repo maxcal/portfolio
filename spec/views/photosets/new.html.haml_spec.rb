@@ -38,21 +38,5 @@ RSpec.describe 'photosets/new.html.haml' do
       input = page.find('input[name="photoset[primary_photo_attributes][flickr_uid]"]', match: :first)
       expect(input.value).to eq photo.flickr_uid
     end
-    it 'has the primary photo small url' do
-      input = page.find('input[name="photoset[primary_photo_attributes][small]"]', match: :first)
-      expect(input.value).to eq photo.small
-    end
-    it 'has the primary photo square url' do
-      input = page.find('input[name="photoset[primary_photo_attributes][square]"]', match: :first)
-      expect(input.value).to eq photo.square
-    end
-    it 'has the primary photo medium url' do
-      input = page.find('input[name="photoset[primary_photo_attributes][medium]"]', match: :first)
-      expect(input.value).to eq photo.medium
-    end
-    it 'has the primary photo original url' do
-      input = page.find('input[name="photoset[primary_photo_attributes][original]"]', match: :first)
-      expect(input.value).to eq photo.original
-    end
   end
 end

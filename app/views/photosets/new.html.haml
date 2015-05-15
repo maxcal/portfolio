@@ -18,10 +18,6 @@
             = field_for_photoset(photoset, :user_id)
             - if photoset.primary_photo
               = field_for_primary_photo(photoset.primary_photo, :flickr_uid)
-              = field_for_primary_photo(photoset.primary_photo, :small)
-              = field_for_primary_photo(photoset.primary_photo, :square)
-              = field_for_primary_photo(photoset.primary_photo, :medium)
-              = field_for_primary_photo(photoset.primary_photo, :original)
             = f.button :submit, class: 'small'
             %p.message.success.invisible= t('photosets.flash.create.success', title: photoset.title)
             %p.message.failure.invisible= t('photosets.flash.create.failure', title: photoset.title)

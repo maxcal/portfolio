@@ -61,7 +61,9 @@ RSpec.describe PhotosetsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:action) { |e| post :create, photoset: attributes_for(:photoset), format: e.metadata[:format] }
+    let(:action) do |e|
+      post :create, photoset: attributes_for(:photoset), format: e.metadata[:format]
+    end
 
     it_should_behave_like "an authorized action"
 

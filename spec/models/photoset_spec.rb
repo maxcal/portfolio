@@ -4,7 +4,6 @@ RSpec.describe Photoset, type: :model do
 
   it { should validate_uniqueness_of :flickr_uid }
   it { should validate_uniqueness_of :title }
-
   it { should have_and_belong_to_many :photos }
   it { should belong_to :primary_photo }
 
@@ -12,7 +11,6 @@ RSpec.describe Photoset, type: :model do
     set = Photoset.new(primary_photo_attributes: { flickr_uid: 'ABC' }, flickr_uid: 1234)
     expect(set.primary_photo.flickr_uid).to eq 'ABC'
   end
-
   describe '.import' do
     let(:user) { create(:user, flickr_uid: '62829091@N05') }
     let(:photosets) do
@@ -76,13 +74,14 @@ RSpec.describe Photoset, type: :model do
     it "sets the title" do
       expect(photoset.photos.first.title).to eq "DSC_7579.jpg"
     end
-
+    it "sets the date_taken" do
+      expect(photoset.photos.first.date_taken).to eq "2013-04-12 14:54:11.000000000 +0000"
+    end
     it "sets sizes" do
       expect(photoset.photos.last.square).to_not be_nil
       expect(photoset.photos.last.medium).to_not be_nil
       expect(photoset.photos.last.original).to_not be_nil
     end
-
     it "accepts a block with the photo and raw data as parameters", skip_get_photos: true  do
       VCR.use_cassette('photosets_get_photos') do
         photoset.get_photos! do |photo, raw|
