@@ -13,10 +13,11 @@
  */
 
 @import 'foundation-icons';
-@import 'components/sticky_footer';
 
 .invisible {
   display: none !important;
 }
 
-
+.site-main.row {
+  margin-top: 15px;
+}

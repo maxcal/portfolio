@@ -19,7 +19,15 @@
 //= require_tree .
 
 $(function(){
+    var $main = $('.site-main');
+    var $header = $('.site-header');
+    var $footer = $('.site-footer');
+
     $(document).foundation();
+    $(window).on('resize', _.throttle(function(){
+        var window_height = window.innerHeight;
+        $main.css('min-height', window_height - $header.outerHeight() - $footer.outerHeight());
+    }, 50)).resize();
 });
 
 (function($doc){
@@ -63,6 +71,9 @@ $(function(){
 
         $(this).find('.flashes').append($flash);
     });
+
+
+
 
 }($(document)));
 

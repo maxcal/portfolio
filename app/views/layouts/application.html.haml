@@ -11,7 +11,7 @@
       = javascript_include_tag "application", 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body.site{ data: { controller: controller_name, action: action_name } }
-  %header
+  %header.site-header
     .contain-to-grid
       %nav.top-bar{data: { topbar: true }}
         - cache do
@@ -27,13 +27,13 @@
               %a.fi-unlock{href: '#'}
                 %span.show-for-sr 'Log in and out'
               =render partial: 'sessions/menu'
-  .flashes
-    - flash.each do |key,msg|
-      %div{ class: "alert-box #{key} flash"}
-        %p.row= msg
-  .main.row
+    .flashes
+      - flash.each do |key,msg|
+        %div{ class: "alert-box #{key} flash"}
+          %p.row= msg
+  .site-main.row
     =yield
-  %footer.footer
+  %footer.site-footer
     .row
       %p
         Images hosted by flickr.
