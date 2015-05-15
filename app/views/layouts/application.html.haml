@@ -10,31 +10,29 @@
       = javascript_include_tag "vendor/modernizr"
       = javascript_include_tag "application", 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body{ data: { controller: controller_name, action: action_name } }
-    .wrapper
-      %header
-        .contain-to-grid
-          %nav.top-bar{data: { topbar: true }}
-            - cache do
-              %ul.title-area
-                %li.name
-                  %h1= link_to 'Portfolio', root_path
-                %li.toggle-topbar.menu-icon
-                  %a{ href: '#' }
-                    %span Menu
-            %section.top-bar-section
-              %ul.left
-                %li.has-dropdown
-                  %a.fi-unlock{href: '#'}
-                    %span.show-for-sr 'Log in and out'
-                  =render partial: 'sessions/menu'
-      .flashes
-        - flash.each do |key,msg|
-          %div{ class: "alert-box #{key} flash"}
-            %p.row= msg
-      .main.row
-        =yield
-      .push
+  %body.site{ data: { controller: controller_name, action: action_name } }
+  %header
+    .contain-to-grid
+      %nav.top-bar{data: { topbar: true }}
+        - cache do
+          %ul.title-area
+            %li.name
+              %h1= link_to 'Portfolio', root_path
+            %li.toggle-topbar.menu-icon
+              %a{ href: '#' }
+                %span Menu
+        %section.top-bar-section
+          %ul.left
+            %li.has-dropdown
+              %a.fi-unlock{href: '#'}
+                %span.show-for-sr 'Log in and out'
+              =render partial: 'sessions/menu'
+  .flashes
+    - flash.each do |key,msg|
+      %div{ class: "alert-box #{key} flash"}
+        %p.row= msg
+  .main.row
+    =yield
   %footer.footer
     .row
       %p
