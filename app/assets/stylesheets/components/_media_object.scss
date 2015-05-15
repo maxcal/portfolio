@@ -27,6 +27,8 @@ $media-image-alignment-margin: 10px;
 // For images and videos, set to block
 .media-object {
   display: block;
+  float: left;
+  margin-right: $media-image-alignment-margin;
 }
 
 // Reset margins on headings for tighter default spacing
@@ -34,22 +36,8 @@ $media-image-alignment-margin: 10px;
   margin-bottom: $media-heading-bottom-margin;
 }
 
-
-// Media image alignment
-// -------------------------
-.media {
-  > .left {
-    margin-right: $media-image-alignment-margin;
-  }
-  > .right {
-    margin-left: $media-image-alignment-margin;
-  }
-}
-
-
 // Media list variation
 // -------------------------
-
 // Undo default ul/ol styles
 .media-list {
   padding-left: 0;

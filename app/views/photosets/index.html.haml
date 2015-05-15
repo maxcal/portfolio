@@ -1,5 +1,10 @@
-.photosets
+%ul.photosets.media-list
 - @photosets.each do |photoset|
-  %article.photoset
-    %h3= link_to(photoset.title, photoset)
-    .description= photoset.description
+  %li.photoset.media
+    %a.omnilink{ href: photoset_path(photoset) }
+      .media-object
+        - if photoset.primary_photo
+          %img{ src: photoset.primary_photo.small }
+      .media-body
+        %h3.title= photoset.title
+        .description= photoset.description

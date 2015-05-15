@@ -34,5 +34,7 @@ RSpec.feature 'Importing photosets from flickr' do
     expect(set.title).to eq "Showcase"
     expect(set.user_id).to eq user.id
     expect(set.description).to eq "Test description"
+    expect(set.primary_photo.flickr_uid).to eq '13362508473'
+    expect(set.primary_photo.small).to eq "https:\/\/farm8.staticflickr.com\/7300\/13362508473_73945d3830_m.jpg"
   end
 end

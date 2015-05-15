@@ -16,19 +16,43 @@ RSpec.describe 'photosets/new.html.haml' do
     expect(rendered).to have_content photosets.last.title
   end
   it 'has the flickr_uid as a hidden input' do
-    input = page.find('input.flickr_uid', match: :first)
+    input = page.find('input[name="photoset[flickr_uid]"]', match: :first)
     expect(input.value).to eq photosets.first.flickr_uid
   end
   it 'has the title as a hidden input' do
-    input = page.find('input.title', match: :first)
+    input = page.find('input[name="photoset[title]"]', match: :first)
     expect(input.value).to eq photosets.first.title
   end
   it 'has the description as a hidden input' do
-    input = page.find('input.description', match: :first)
+    input = page.find('input[name="photoset[description]"]', match: :first)
     expect(input.value).to eq photosets.first.description
   end
   it 'has the user id as a hidden input' do
-    input = page.find('input.user_id', match: :first)
+    input = page.find('input[name="photoset[user_id]"]', match: :first)
     expect(input.value).to eq photosets.first.user_id.to_s
+  end
+
+  describe 'nests inputs for primary_photo' do
+    let(:photo) { photosets.first.primary_photo }
+    it 'has the primary photo flickr_uid' do
+      input = page.find('input[name="photoset[primary_photo_attributes][flickr_uid]"]', match: :first)
+      expect(input.value).to eq photo.flickr_uid
+    end
+    it 'has the primary photo small url' do
+      input = page.find('input[name="photoset[primary_photo_attributes][small]"]', match: :first)
+      expect(input.value).to eq photo.small
+    end
+    it 'has the primary photo square url' do
+      input = page.find('input[name="photoset[primary_photo_attributes][square]"]', match: :first)
+      expect(input.value).to eq photo.square
+    end
+    it 'has the primary photo medium url' do
+      input = page.find('input[name="photoset[primary_photo_attributes][medium]"]', match: :first)
+      expect(input.value).to eq photo.medium
+    end
+    it 'has the primary photo original url' do
+      input = page.find('input[name="photoset[primary_photo_attributes][original]"]', match: :first)
+      expect(input.value).to eq photo.original
+    end
   end
 end
