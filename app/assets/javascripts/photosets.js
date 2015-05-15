@@ -31,10 +31,14 @@
                 method: 'post',
                 dataType: 'json',
                 data: serialize($photoset)
-            }).success(function(){
+            }).success(function(data){
+                var link = $('<a></a>');
+                link.attr('href', '/photosets/' + data['id']);
                 $doc.trigger('flash', ['notice', $photoset.find('.message.success').html()]);
                 $button.remove();
+                $photoset.find('.message.success').removeClass('invisible');
                 $photoset.addClass('disabled');
+                $photoset.wrap(link);
             }).fail(function(){
                 $doc.trigger('flash', ['alert', $photoset.find('.message.failure').html()]);
             });

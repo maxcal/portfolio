@@ -1,2 +1,3 @@
 %article.photoset
   %h1= @photoset.title
+  =render partial: 'lightbox', locals: { photos: @photoset.photos } if @photoset.photos.any?

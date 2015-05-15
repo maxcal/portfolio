@@ -34,12 +34,9 @@ RSpec.feature 'Importing photosets from flickr' do
       click_button('Create Photoset', match: :first)
       wait_for_ajax
     end
-    set = Photoset.last
-    # Values are from /support/vcr_cassettes/photosets_import.yml
-    expect(set.flickr_uid).to eq "72157647753138397"
-    expect(set.title).to eq "Showcase"
-    expect(set.user_id).to eq user.id
-    expect(set.description).to eq "Like a greatest hits collection, but with snow."
-    expect(set.primary_photo.flickr_uid).to eq '13362508473'
+    find('.photoset', match: :first).click
+    expect(page).to have_content "Showcase"
+    expect(page).to have_content "Like a greatest hits collection, but with snow."
+    expect(page).to have_selector '.photo img', count: 10
   end
 end

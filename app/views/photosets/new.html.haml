@@ -22,4 +22,4 @@
             %p.message.success.invisible= t('photosets.flash.create.success', title: photoset.title)
             %p.message.failure.invisible= t('photosets.flash.create.failure', title: photoset.title)
   - else
-    %h2= t('.nothing_to_import')
+    %p.alert-box.secondary= t('.nothing_to_import')
