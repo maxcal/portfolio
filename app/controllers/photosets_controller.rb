@@ -10,6 +10,7 @@ class PhotosetsController < ApplicationController
     respond_with(@photoset)
   end
 
+  # Gets photosets from Flickr and allows user to choose which ones to import
   def new
     @photosets = Photoset.import(user: current_user).select(&:new_record?)
     respond_with(@photosets)

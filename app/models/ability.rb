@@ -1,6 +1,11 @@
+# All permissions are defined in the CanCanCan Ability class
+# @see Role
+# @see https://github.com/CanCanCommunity/cancancan/
 class Ability
   include CanCan::Ability
 
+  # @param [User|nil] User the current application user.
+  #   if there is no logged in user a guest user will be created
   # @see https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   def initialize(user)
     alias_action :create, :read, :update, :destroy, to: :crud

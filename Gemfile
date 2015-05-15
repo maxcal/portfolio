@@ -27,6 +27,7 @@ gem 'haml', '~> 4.0.6'
 
 group :doc do
   gem 'yard', '~> 0.8.7.6'
+  gem 'yard-activerecord', '~> 0.0.14'
 end
 
 group :development, :test do
@@ -35,10 +36,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'better_errors' # better error pages
   gem 'meta_request' # used for RailsPanel in Google Chrome
-  gem 'web-console'  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'guard-livereload', require: false
 end
 
