@@ -49,12 +49,18 @@ class Photoset < ActiveRecord::Base
     options = kwargs.merge(
         photoset_id: flickr_uid,
         user_id: user.flickr_uid,
-        extras: 'url_sq,url_t,url_s,url_m,url_o'
+        extras: 'url_sq,url_t,url_s,url_m,url_o',
     )
     results = flickr.photosets.getPhotos(options)
     results['photo'].each do |raw|
       photo = Photo.find_or_initialize_by(flickr_uid: raw['id'])
-      photo.assign_attributes({ small: raw['url_s'] })
+      photo.assign_attributes(
+          title: raw['title'],
+          small: raw['url_s'],
+          square: raw['url_sq'],
+          medium: raw['url_m'],
+          original: raw['url_o']
+      )
       yield(photo, raw) if block_given?
       photo.save!
       self.photos << photo

@@ -73,6 +73,16 @@ RSpec.describe Photoset, type: :model do
     it "updates the properties for existing photos" do
       expect(photoset.photos.first.small).to eq "https:\/\/farm9.staticflickr.com\/8522\/8643528260_ecdfeeeac2_m.jpg"
     end
+    it "sets the title" do
+      expect(photoset.photos.first.title).to eq "DSC_7579.jpg"
+    end
+
+    it "sets sizes" do
+      expect(photoset.photos.last.square).to_not be_nil
+      expect(photoset.photos.last.medium).to_not be_nil
+      expect(photoset.photos.last.original).to_not be_nil
+    end
+
     it "accepts a block with the photo and raw data as parameters", skip_get_photos: true  do
       VCR.use_cassette('photosets_get_photos') do
         photoset.get_photos! do |photo, raw|
