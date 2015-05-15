@@ -9,18 +9,19 @@ class Photoset < ActiveRecord::Base
   validates_uniqueness_of :title
 
   # Imports photosets from `flickr.photosets.getList`.
-  # The user_id params is required - any additional hash arguments will be forwarded to
-  # @param [User] user
-  # @param [Hash] kwargs
-  # @yield [photoset, raw_data]
-  #   @yieldreturn [Photoset]
+  # @note The photos are not persisted.
+  # @param [User] user - (required)
+  # @param [Hash] kwargs - (optional) any additional hash arguments forwarded to the api call.
+  # @yield [photoset, raw_data] - yields the Photoset and raw data to the optional block.
+  # @return [Array]
+  # @see https://www.flickr.com/services/api/flickr.photosets.getList.html
   def self.import user:, **kwargs, &block
     options = kwargs.merge(
         user_id: user.flickr_uid,
-        primary_photo_extras: 'url_sq, url_t, url_s, url_m, url_o'
+        primary_photo_extras: 'url_sq, url_t,url_s,url_m,url_o'
     )
     result = flickr.photosets.getList(options)
-    photosets = result.map do |raw|
+    result.map do |raw|
       set = create_with(
           title: raw["title"],
           description: raw["description"],
@@ -36,5 +37,28 @@ class Photoset < ActiveRecord::Base
       yield(set, raw) if block_given?
       set
     end
+  end
+
+  # Get the photos for a set from `flickr.photosets.getPhotos`.
+  # @note This creates new photos and updates existing photos.
+  # @param [Hash] kwargs - (optional) any additional hash arguments forwarded to the api call.
+  # @yield [photo, raw_data] - yields the Photoset and raw data to the optional block before saving.
+  # @return [ActiveRecord::Associations::CollectionProxy]
+  # @see https://www.flickr.com/services/api/flickr.photosets.getPhotos.htm
+  def get_photos! **kwargs, &block
+    options = kwargs.merge(
+        photoset_id: flickr_uid,
+        user_id: user.flickr_uid,
+        extras: 'url_sq,url_t,url_s,url_m,url_o'
+    )
+    results = flickr.photosets.getPhotos(options)
+    results['photo'].each do |raw|
+      photo = Photo.find_or_initialize_by(flickr_uid: raw['id'])
+      photo.assign_attributes({ small: raw['url_s'] })
+      yield(photo, raw) if block_given?
+      photo.save!
+      self.photos << photo
+    end
+    self.photos
   end
 end

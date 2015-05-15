@@ -11,5 +11,9 @@ FactoryGirl.define do
       after(:build)  { |user| user.add_role(:admin) }
       after(:stub)  { |user| user.add_role(:admin) }
     end
+
+    factory :me do
+      flickr_uid '62829091@N05'
+    end
   end
 end

@@ -50,4 +50,36 @@ RSpec.describe Photoset, type: :model do
       expect(photosets.first.primary_photo).to be_a Photo
     end
   end
+
+  describe '.get_photos!' do
+    let(:photoset){ create(:photoset, flickr_uid: "72157647753138397", user: create(:me)) }
+    before do |ex|
+      create(:photo, flickr_uid: '8643528260')
+      VCR.use_cassette('photosets_get_photos') do
+        photoset.get_photos!
+      end unless ex.metadata[:skip_get_photos]
+    end
+    it "returns an association", skip_get_photos: true do
+      VCR.use_cassette('photosets_get_photos') do
+        expect(photoset.get_photos!).to be_a ActiveRecord::Associations::CollectionProxy
+      end
+    end
+    it "sets flickr_uid" do
+      expect(photoset.photos.last.flickr_uid).to eq '8234167823'
+    end
+    it "sets the small url" do
+      expect(photoset.photos.last.small).to eq "https:\/\/farm9.staticflickr.com\/8479\/8234167823_28bd0cabe4_m.jpg"
+    end
+    it "updates the properties for existing photos" do
+      expect(photoset.photos.first.small).to eq "https:\/\/farm9.staticflickr.com\/8522\/8643528260_ecdfeeeac2_m.jpg"
+    end
+    it "accepts a block with the photo and raw data as parameters", skip_get_photos: true  do
+      VCR.use_cassette('photosets_get_photos') do
+        photoset.get_photos! do |photo, raw|
+          photo.title = raw['id']
+        end
+      end
+      expect(photoset.photos.first.title).to eq photoset.photos.first.flickr_uid
+    end
+  end
 end
