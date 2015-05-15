@@ -7,12 +7,14 @@ RSpec.feature 'Importing photosets from flickr' do
 
   let(:user) { create(:admin, flickr_uid: '62829091@N05') }
 
-  background do
-    login_as user
+  before { login_as user }
+
+  let(:visit_new_photosets_path) do
     VCR.use_cassette('photosets_import') { visit new_photoset_path }
   end
 
   scenario 'when I import a photoset I should be notified when it succeeds', js: true do
+    visit_new_photosets_path
     VCR.use_cassette('create_a_photoset') do
       click_button('Create Photoset', match: :first)
       wait_for_ajax
@@ -21,6 +23,7 @@ RSpec.feature 'Importing photosets from flickr' do
   end
 
   scenario 'I should not be able to re-import the same photoset', js: true do
+    visit_new_photosets_path
     VCR.use_cassette('create_a_photoset') do
       click_button('Create Photoset', match: :first)
       wait_for_ajax
@@ -29,7 +32,7 @@ RSpec.feature 'Importing photosets from flickr' do
   end
 
   scenario 'When I create a photoset it should have the correct attributes', js: true do
-    # This basically tests that the mapping in javascript between fields and params is correct
+    visit_new_photosets_path
     VCR.use_cassette('create_a_photoset') do
       click_button('Create Photoset', match: :first)
       wait_for_ajax
