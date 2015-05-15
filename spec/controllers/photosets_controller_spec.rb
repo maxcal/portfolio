@@ -6,7 +6,7 @@ RSpec.describe PhotosetsController, type: :controller do
   subject { response }
   let(:photoset) { create(:photoset) }
   let(:params) {|e| {format: e.metadata[:format]}}
-  let(:admin) { create(:admin) }
+  let(:admin) { create(:admin, flickr_uid: '62829091@N05') }
 
   before do |example|
     set_current_user(example.metadata[:valid_session] ? admin : nil)
@@ -62,7 +62,11 @@ RSpec.describe PhotosetsController, type: :controller do
 
   describe 'POST #create' do
     let(:action) do |e|
-      post :create, photoset: attributes_for(:photoset), format: e.metadata[:format]
+      VCR.use_cassette('creating_a_photoset') do
+        post :create,
+             photoset: attributes_for(:photoset, flickr_uid: '72157642806447225'),
+             format: e.metadata[:format]
+      end
     end
 
     it_should_behave_like "an authorized action"
@@ -81,16 +85,17 @@ RSpec.describe PhotosetsController, type: :controller do
           expect(assigns(:photoset)).to be_persisted
         end
         it { should redirect_to assigns(:photoset) }
-
         it 'assigns user to photoset' do
           expect(assigns(:photoset).user).to eq admin
+        end
+        it 'gets photos' do
+          expect(assigns(:photoset).photos.count).to eq 11
         end
       end
       context 'with invalid params', invalid: true do
         it { should render_template :new }
       end
       context 'as JSON', format: :json do
-        let(:action) { |e| post :create, photoset: attributes_for(:photoset), format: :json }
         it { should have_http_status :created }
       end
     end
@@ -153,16 +158,13 @@ RSpec.describe PhotosetsController, type: :controller do
     let(:action) do
       delete :destroy, id: photoset
     end
-
     it_should_behave_like "an authorized action"
-
     context 'when authorized', valid_session: true do
       before { action }
       it 'destroys the photoset' do
         expect(assigns(:photoset).destroyed?).to be_truthy
       end
       it { should redirect_to action: :index }
-
       context 'as JSON', format: :json do
         it { should have_http_status :found }
       end

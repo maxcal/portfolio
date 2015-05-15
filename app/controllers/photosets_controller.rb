@@ -20,6 +20,7 @@ class PhotosetsController < ApplicationController
     @photoset.user = current_user
     respond_with @photoset do |format|
       if @photoset.save
+        @photoset.get_photos!
         format.html { redirect_to @photoset }
       else
         format.html { render action: :new }

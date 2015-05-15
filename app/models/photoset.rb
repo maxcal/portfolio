@@ -18,7 +18,7 @@ class Photoset < ActiveRecord::Base
   def self.import user:, **kwargs, &block
     options = kwargs.merge(
         user_id: user.flickr_uid,
-        primary_photo_extras: 'url_sq, url_t,url_s,url_m,url_o'
+        primary_photo_extras: 'url_sq,url_t,url_s,url_m,url_o'
     )
     result = flickr.photosets.getList(options)
     result.map do |raw|
@@ -27,7 +27,8 @@ class Photoset < ActiveRecord::Base
           description: raw["description"],
           user: user,
           primary_photo_attributes: {
-              flickr_uid: raw['primary']
+              flickr_uid: raw['primary'],
+              square: raw['primary_photo_extras']['url_sq']
           }
       ).find_or_initialize_by(flickr_uid: raw["id"])
       yield(set, raw) if block_given?
