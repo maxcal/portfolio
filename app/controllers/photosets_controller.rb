@@ -47,7 +47,6 @@ class PhotosetsController < ApplicationController
   end
 
   def photoset_params
-    params.require(:photoset).permit(:title, :description, :flickr_uid,
-                                     primary_photo_attributes: [:flickr_uid, :small, :square, :medium, :original])
+    params.require(:photoset).permit(:title, :description, :flickr_uid, primary_photo_attributes: [:flickr_uid, :square])
   end
 end
