@@ -1,4 +1,7 @@
 module AuthServices
+
+  # Checks if there is an authentication for a user
+  # - if it does not exist it creates the authentication and user
   class Authenticate
     # @param [Hash]
     def call(auth_hash)

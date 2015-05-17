@@ -1,6 +1,7 @@
 en:
   sessions:
     menu:
+      profile: 'Your profile'
       sign_in_with_flickr: 'Log in with Flickr'
       sign_out: 'Log out'
     flash:
