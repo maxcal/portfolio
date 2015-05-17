@@ -11,43 +11,6 @@ RSpec.describe Photoset, type: :model do
     set = Photoset.new(primary_photo_attributes: { flickr_uid: 'ABC' }, flickr_uid: 1234)
     expect(set.primary_photo.flickr_uid).to eq 'ABC'
   end
-  describe '.import' do
-    let(:user) { create(:user, flickr_uid: '62829091@N05') }
-    let(:photosets) do
-      sets = nil
-      VCR.use_cassette('photosets_import') do
-        sets = Photoset.import(user: user)
-      end
-      sets
-    end
-    it "gets photosets" do
-      expect(photosets.first).to be_a Photoset
-    end
-    it "sets flickr_uid" do
-      expect(photosets.first.flickr_uid).to eq '72157647753138397'
-    end
-    it "sets title" do
-      expect(photosets.first.title).to eq 'Showcase'
-    end
-    it "sets the description" do
-      expect(photosets.first.description).to eq "Like a greatest hits collection, but with snow."
-    end
-    it "sets the user" do
-      expect(photosets.first.user).to eq user
-    end
-    it "yields the results and raw data to a block" do
-      sets = nil
-      VCR.use_cassette('photosets_import') do
-        sets = Photoset.import(user: user) do |set, raw|
-          set.title = raw["title"].reverse
-        end
-      end
-      expect(sets.first.title).to eq 'Showcase'.reverse
-    end
-    it 'imports the primary photo' do
-      expect(photosets.first.primary_photo).to be_a Photo
-    end
-  end
 
   describe '.get_photos!' do
     let(:photoset){ create(:photoset, flickr_uid: "72157647753138397", user: create(:me)) }

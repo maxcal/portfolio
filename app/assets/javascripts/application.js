@@ -18,16 +18,22 @@
 //= require_self
 //= require_tree .
 
-$(function(){
-    var $main = $('.site-main');
-    var $header = $('.site-header');
-    var $footer = $('.site-footer');
-
+$(document).on('ready page:load', function(){
     $(document).foundation();
-    $(window).on('resize', _.throttle(function(){
-        var window_height = window.innerHeight;
-        $main.css('min-height', window_height - $header.outerHeight() - $footer.outerHeight());
-    }, 50)).resize();
+
+    // A very pragmatic sticky footer.
+    (function(){
+        var $main = $('.site-main');
+        var $header = $('.site-header');
+        var $footer = $('.site-footer');
+        var stick_it = function(){
+            var window_height = window.innerHeight;
+            $main.css('min-height', window_height - $header.outerHeight() - $footer.outerHeight());
+        };
+        stick_it();
+        $(window).on('resize', _.throttle(stick_it, 50));
+        $(document).on('page:change', stick_it);
+    }());
 });
 
 (function($doc){
@@ -71,10 +77,6 @@ $(function(){
 
         $(this).find('.flashes').append($flash);
     });
-
-
-
-
 }($(document)));
 
 

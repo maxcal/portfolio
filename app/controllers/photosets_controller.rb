@@ -12,7 +12,7 @@ class PhotosetsController < ApplicationController
 
   # Gets photosets from Flickr and allows user to choose which ones to import
   def new
-    @photosets = Photoset.import(user: current_user).select(&:new_record?)
+    @photosets = PhotosetImport.new(current_user).call.select(&:new_record?)
     respond_with(@photosets)
   end
 

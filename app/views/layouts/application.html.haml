@@ -27,6 +27,12 @@
               %a.fi-unlock{href: '#'}
                 %span.show-for-sr 'Log in and out'
               =render partial: 'sessions/menu'
+          %ul.right
+            %li.has-dropdown
+              %a.fi-folder{href: photosets_path} Albums
+              - if can? :crud, Photoset
+                %ul.dropdown
+                  %li= link_to(t('photosets.new.import_from_flickr'), new_photoset_path)
     .flashes
       - flash.each do |key,msg|
         %div{ class: "alert-box #{key} flash"}
