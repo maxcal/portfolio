@@ -15,24 +15,14 @@ class Auth::CallbacksController < ApplicationController
   private
 
   def handle_callback(provider)
-    @auth_hash = request.env['omniauth.auth']
-    @auth = Authentication.joins(:user).find_by(uid: @auth_hash[:uid], provider: 'flickr')
+    @user = AuthServices::Authenticate.new.call(request.env['omniauth.auth'])
 
-    unless @auth
-      @auth = Authentication.create_from_omniauth(@auth_hash)
-    end
-
-    unless @auth.user
-      @user = User.new_from_omniauth(@auth_hash)
-      @auth.user = @user
-      @auth.save!
-      if @user == User.first
-        @user.add_role(:admin)
-      end
+    if @user == User.first
+      @user.add_role(:admin)
     end
 
     # sign in the user
-    sign_in @auth.user
+    sign_in @user
     redirect_to :root, notice: t('sessions.flash.you_have_been_signed_in')
   end
 end

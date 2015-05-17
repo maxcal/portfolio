@@ -61,6 +61,8 @@ guard :rspec, cmd: "spring rspec", all_on_pass: true do
     ]
   end
 
+  watch(%r{^app/services/(.+)\.rb$}) { |m| "spec/app/services/#{m[1]}_spec.rb" }
+
   # Rails config changes
   watch(rails.spec_helper)     { rspec.spec_dir }
   watch(rails.routes)          { "#{rspec.spec_dir}/routing" }
