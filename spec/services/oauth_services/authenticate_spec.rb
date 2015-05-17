@@ -33,7 +33,7 @@ RSpec.describe AuthServices::Authenticate do
         end
       end
       context 'if user exists' do
-        before { auth.user = create(:user) }
+        before { auth.update(user: create(:user)) }
         it 'does not create a new user' do
           expect {
             service.call(auth_hash)
