@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe PhotosetImport do
+RSpec.describe PhotosetServices::GetList do
   let(:user) { build_stubbed(:user) }
   let(:flickr_client) { instance_double('Flickraw::Flickr') }
-  let(:service) { PhotosetImport.new(user, client: flickr_client) }
+  let(:service) { described_class.new(user, client: flickr_client) }
   let(:data) {[
       {
           'id' => 'ABC_123',

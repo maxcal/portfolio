@@ -1,4 +1,5 @@
-class PhotosetImport
+module PhotosetServices
+  class GetList
 
   # @param [User] user (required)
   # @param [Flickraw::Flickr] client (optional) can be used in tests to stub out flickraw
@@ -31,5 +32,6 @@ class PhotosetImport
       yield(set, raw) if block_given?
       set
     end
+  end
   end
 end

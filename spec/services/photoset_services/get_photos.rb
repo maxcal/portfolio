@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe PhotosetPhotoImport do
+RSpec.describe PhotosetServices::GetPhotos do
 
   let(:photoset) { build_stubbed(:photoset, user: build_stubbed(:user) ) }
   let(:flickr_client) { instance_double('Flickraw::Flickr') }
@@ -39,7 +39,7 @@ RSpec.describe PhotosetPhotoImport do
         ]
     }
   }
-  let(:service) { PhotosetPhotoImport.new(photoset, client: flickr_client) }
+  let(:service) { described_class.new(photoset, client: flickr_client) }
 
   before { allow(flickr_client).to receive_message_chain(:photosets, :getPhotos).and_return(data) }
 

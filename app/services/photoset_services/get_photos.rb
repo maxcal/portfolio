@@ -1,4 +1,5 @@
-class PhotosetPhotoImport
+module PhotosetServices
+  class GetPhotos
 
   # @param [Photoset] photoset
   # @param [Flickraw::Flickr] client (optional)
@@ -36,5 +37,6 @@ class PhotosetPhotoImport
       photo
     end
     @photoset.photos
+  end
   end
 end

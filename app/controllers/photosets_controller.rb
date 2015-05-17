@@ -12,7 +12,7 @@ class PhotosetsController < ApplicationController
 
   # Gets photosets from Flickr and allows user to choose which ones to import
   def new
-    @photosets = PhotosetImport.new(current_user).call.select(&:new_record?)
+    @photosets = PhotosetServices::GetList.new(current_user).call.select(&:new_record?)
     respond_with(@photosets)
   end
 
@@ -20,7 +20,7 @@ class PhotosetsController < ApplicationController
     @photoset.user = current_user
     respond_with @photoset do |format|
       if @photoset.save
-        @photos = PhotosetPhotoImport.new(@photoset).call
+        @photos = PhotosetServices::GetPhotos.new(@photoset).call
         format.html { redirect_to @photoset }
       else
         format.html { render action: :new }
