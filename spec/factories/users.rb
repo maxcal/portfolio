@@ -3,10 +3,9 @@
 FactoryGirl.define do
   factory :user do
     name "Joe Bloggs"
-    nickname "jbloggs"
-    email "jbloggs@example.com"
-    flickr_uid "abc123456"
-
+    sequence(:nickname) { |n| "jbloggs" + (n > 1  ? " #{n}" : "") }
+    email { nickname + "@example.com" }
+    sequence(:flickr_uid, 6) { |n| "abc12345#{n}" }
     factory :admin do
       after(:build)  { |user| user.add_role(:admin) }
       after(:stub)  { |user| user.add_role(:admin) }

@@ -23,6 +23,9 @@ en:
     index:
       edit_user: 'Edit #{nickname}'
     flash:
+      update:
+        success: 'User updated'
+        failure: 'Could not update user.'
       destroy:
         success: 'User deleted'
         success_self: 'We are sorry to see you go, come back any time'

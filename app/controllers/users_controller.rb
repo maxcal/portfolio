@@ -13,8 +13,11 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:notice] = t('users.flash.update.success')
       redirect_to @user
     else
+      flash[:notice] = t('users.flash.update.failure')
+      render action: :edit
     end
   end
 
