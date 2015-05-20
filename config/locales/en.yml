@@ -37,6 +37,8 @@ en:
       nothing_to_import: 'No photosets found to import'
     show:
       edit: 'Edit'
+      destroy: 'Delete'
+      confirm_delete_photoset: Are you sure? Note that this does not remove the photoset from Flickr.
     edit:
       editing_photoset: Editing %{title}
       delete_photoset: Delete photoset

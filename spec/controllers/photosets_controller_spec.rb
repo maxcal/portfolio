@@ -12,14 +12,17 @@ RSpec.describe PhotosetsController, type: :controller do
     set_current_user(example.metadata[:valid_session] ? admin : nil)
   end
 
+  shared_examples "a singular resource representation" do
+    it "should assign user as @user" do
+      expect(assigns(:photoset).id).to eq photoset.id
+    end
+  end
+
   describe 'GET #show' do
     before { |e| get :show, id: photoset, format: e.metadata[:format] }
     it { should have_http_status :success }
     it { should render_template :show }
-    it "assigns Photoset as @photoset" do
-      expect(assigns(:photoset)).to eq photoset
-    end
-
+    it_should_behave_like "a singular resource representation"
     context 'as JSON', format: :json do
       it { should have_http_status :success }
     end
@@ -43,19 +46,15 @@ RSpec.describe PhotosetsController, type: :controller do
 
   describe 'GET #new' do
 
-    it_should_behave_like 'an authorized action' do
-      let(:action) { get :new }
-    end
+    let(:action) { get :new }
 
+    it_should_behave_like 'an authorized action'
     context 'when authorized', valid_session: true do
-      before do |e|
-        VCR.use_cassette('photosets_import') { get :new }
-      end
-
+      before { VCR.use_cassette('photosets_import') { action } }
       it { should have_http_status :success }
       it { should render_template :new }
       it "assigns photosets as @photosets" do
-        expect(assigns(:photosets).first).to be_a Photoset
+        expect(assigns(:photosets).first).to be_a_new Photoset
       end
     end
   end
@@ -94,6 +93,7 @@ RSpec.describe PhotosetsController, type: :controller do
       end
       context 'with invalid params', invalid: true do
         it { should render_template :new }
+        it { should have_http_status :ok }
       end
       context 'as JSON', format: :json do
         it { should have_http_status :created }
@@ -155,18 +155,23 @@ RSpec.describe PhotosetsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:action) do
-      delete :destroy, id: photoset
+    let(:action) {  |ex| delete :destroy, id: photoset, format: ex.metadata[:format] }
+    shared_examples 'destroys the photoset' do
+      it 'destroys the photoset' do
+        expect(assigns(:photoset).destroyed?).to be_truthy
+      end
     end
     it_should_behave_like "an authorized action"
     context 'when authorized', valid_session: true do
       before { action }
-      it 'destroys the photoset' do
-        expect(assigns(:photoset).destroyed?).to be_truthy
-      end
+      include_examples 'destroys the photoset'
       it { should redirect_to action: :index }
+      it 'flashes a message' do
+        expect(controller.flash[:notice]).to eq I18n.t('photosets.flash.destroy.success')
+      end
       context 'as JSON', format: :json do
-        it { should have_http_status :found }
+        include_examples 'destroys the photoset'
+        it { should have_http_status :no_content }
       end
     end
   end

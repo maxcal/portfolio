@@ -42,7 +42,11 @@ class PhotosetsController < ApplicationController
   end
 
   def destroy
-    @photoset.destroy
+    if @photoset.destroy
+      flash[:notice] = t('photosets.flash.destroy.success')
+    else
+      flash[:notice] = t('photosets.flash.destroy.failure')
+    end
     respond_with(@photoset)
   end
 
