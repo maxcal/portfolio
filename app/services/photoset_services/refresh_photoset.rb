@@ -17,8 +17,7 @@ module PhotosetServices
       @photoset.update!(
          title: response["title"],
          description: response["description"],
-         primary_photo: primary,
-         photos: photos
+         primary_photo: primary
       )
     end
   end

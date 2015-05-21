@@ -20,6 +20,7 @@ module PhotosetServices
         user_id: @photoset.user.flickr_uid,
         extras: 'date_taken,url_q,url_t,url_s,url_m,url_o'
     )
+    @photoset.photos.clear unless @photoset.new_record?
     results = @client.photosets.getPhotos(options)
     results["photo"].map do |raw|
       photo = Photo.find_or_initialize_by(flickr_uid: raw['id'])

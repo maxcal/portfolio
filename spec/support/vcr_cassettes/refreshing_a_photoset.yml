@@ -1,0 +1,127 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: api_key=7d48f7eacbb2cc9033c2e84b7f1b1d1b&photoset_id=72157647753138397&user_id=62829091%40N05&method=flickr.photosets.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - FlickRaw/0.9.8
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="7d48f7eacbb2cc9033c2e84b7f1b1d1b",
+        oauth_nonce="aNK0nbt4AVvCEFKEDXgb9u8sBcSx08SHiWfdB6rWKrY%3D", oauth_signature="2ab73df317f343e1%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1432233569", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 21 May 2015 18:39:10 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '308'
+      P3p:
+      - policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      Cache-Control:
+      - private
+      X-Served-By:
+      - www345.flickr.bf1.yahoo.com
+      Vary:
+      - Accept-Encoding
+      Age:
+      - '0'
+      Via:
+      - http/1.1 fts126.flickr.bf1.yahoo.com (ApacheTrafficServer [cMsSf ]), http/1.1
+        r02.ycpi.dea.yahoo.net (ApacheTrafficServer [cMsSf ])
+      Server:
+      - ATS
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"photoset":{"id":"72157647753138397","owner":"62829091@N05","username":"maxcalabrese","primary":"13362508473","secret":"73945d3830","server":"7300","farm":8,"photos":10,"count_views":"0","count_comments":"0","count_photos":"10","count_videos":0,"title":{"_content":"Showcase"},"description":{"_content":"Like
+        a greatest hits collection, but with snow."},"can_comment":0,"date_create":"1411992696","date_update":"1431722808","coverphoto_server":"0","coverphoto_farm":0},"stat":"ok"}'
+    http_version: 
+  recorded_at: Thu, 21 May 2015 18:39:30 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photoset_id=72157647753138397&user_id=62829091%40N05&extras=date_taken%2Curl_q%2Curl_t%2Curl_s%2Curl_m%2Curl_o&method=flickr.photosets.getPhotos&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - FlickRaw/0.9.8
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="7d48f7eacbb2cc9033c2e84b7f1b1d1b",
+        oauth_nonce="WG9odBA4rzcrsror1sSg8m63doU%2BVBTg99XB%2F%2BEJFVI%3D", oauth_signature="2ab73df317f343e1%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1432233570", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 21 May 2015 18:39:11 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1253'
+      P3p:
+      - policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      Cache-Control:
+      - private
+      X-Served-By:
+      - www29.flickr.bf1.yahoo.com
+      Vary:
+      - Accept-Encoding
+      Age:
+      - '0'
+      Via:
+      - http/1.1 fts114.flickr.bf1.yahoo.com (ApacheTrafficServer [cMsSf ]), http/1.1
+        r18.ycpi.dea.yahoo.net (ApacheTrafficServer [cMsSf ])
+      Server:
+      - ATS
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"photoset":{"id":"72157647753138397","primary":"13362508473","owner":"62829091@N05","ownername":"maxcalabrese","photo":[{"id":"13362508473","secret":"73945d3830","server":"7300","farm":8,"title":"\u00c5re
+        Kiteskola. Offpistcamp, Mars 2014","isprimary":"1","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2014-03-22
+        17:48:30","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm8.staticflickr.com\/7300\/13362508473_73945d3830_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm8.staticflickr.com\/7300\/13362508473_73945d3830_t.jpg","height_t":"100","width_t":"67","url_s":"https:\/\/farm8.staticflickr.com\/7300\/13362508473_73945d3830_m.jpg","height_s":"240","width_s":"160","url_m":"https:\/\/farm8.staticflickr.com\/7300\/13362508473_73945d3830.jpg","height_m":"500","width_m":"333","url_o":"https:\/\/farm8.staticflickr.com\/7300\/13362508473_018da002d0_o.jpg","height_o":"4256","width_o":"2832"},{"id":"8643528260","secret":"ecdfeeeac2","server":"8522","farm":9,"title":"DSC_7579.jpg","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2013-04-12
+        14:54:11","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm9.staticflickr.com\/8522\/8643528260_ecdfeeeac2_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm9.staticflickr.com\/8522\/8643528260_ecdfeeeac2_t.jpg","height_t":"67","width_t":"100","url_s":"https:\/\/farm9.staticflickr.com\/8522\/8643528260_ecdfeeeac2_m.jpg","height_s":"160","width_s":"240","url_m":"https:\/\/farm9.staticflickr.com\/8522\/8643528260_ecdfeeeac2.jpg","height_m":"333","width_m":"500","url_o":"https:\/\/farm9.staticflickr.com\/8522\/8643528260_b31a61b530_o.jpg","height_o":"2724","width_o":"4093"},{"id":"8643528698","secret":"823457d9ae","server":"8544","farm":9,"title":"DSC_7598.jpg","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2013-04-12
+        14:56:50","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm9.staticflickr.com\/8544\/8643528698_823457d9ae_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm9.staticflickr.com\/8544\/8643528698_823457d9ae_t.jpg","height_t":"67","width_t":"100","url_s":"https:\/\/farm9.staticflickr.com\/8544\/8643528698_823457d9ae_m.jpg","height_s":"160","width_s":"240","url_m":"https:\/\/farm9.staticflickr.com\/8544\/8643528698_823457d9ae.jpg","height_m":"333","width_m":"500","url_o":"https:\/\/farm9.staticflickr.com\/8544\/8643528698_ccfa10f599_o.jpg","height_o":"2832","width_o":"4256"},{"id":"8642427569","secret":"6704bedb36","server":"8245","farm":9,"title":"DSC_7499.jpg","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2013-04-12
+        14:24:28","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm9.staticflickr.com\/8245\/8642427569_6704bedb36_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm9.staticflickr.com\/8245\/8642427569_6704bedb36_t.jpg","height_t":"67","width_t":"100","url_s":"https:\/\/farm9.staticflickr.com\/8245\/8642427569_6704bedb36_m.jpg","height_s":"160","width_s":"240","url_m":"https:\/\/farm9.staticflickr.com\/8245\/8642427569_6704bedb36.jpg","height_m":"333","width_m":"500","url_o":"https:\/\/farm9.staticflickr.com\/8245\/8642427569_a50da99691_o.jpg","height_o":"2832","width_o":"4256"},{"id":"8545736912","secret":"18c4667139","server":"8383","farm":9,"title":"DSC_5838.jpg","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2013-02-05
+        10:48:57","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm9.staticflickr.com\/8383\/8545736912_18c4667139_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm9.staticflickr.com\/8383\/8545736912_18c4667139_t.jpg","height_t":"67","width_t":"100","url_s":"https:\/\/farm9.staticflickr.com\/8383\/8545736912_18c4667139_m.jpg","height_s":"160","width_s":"240","url_m":"https:\/\/farm9.staticflickr.com\/8383\/8545736912_18c4667139.jpg","height_m":"333","width_m":"500","url_o":"https:\/\/farm9.staticflickr.com\/8383\/8545736912_8e3e73207e_o.jpg","height_o":"2712","width_o":"4076"},{"id":"8545732484","secret":"5d94457c96","server":"8514","farm":9,"title":"DSC_5677.jpg","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2013-02-05
+        10:16:36","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm9.staticflickr.com\/8514\/8545732484_5d94457c96_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm9.staticflickr.com\/8514\/8545732484_5d94457c96_t.jpg","height_t":"67","width_t":"100","url_s":"https:\/\/farm9.staticflickr.com\/8514\/8545732484_5d94457c96_m.jpg","height_s":"160","width_s":"240","url_m":"https:\/\/farm9.staticflickr.com\/8514\/8545732484_5d94457c96.jpg","height_m":"333","width_m":"500","url_o":"https:\/\/farm9.staticflickr.com\/8514\/8545732484_4fe336136a_o.jpg","height_o":"2560","width_o":"3848"},{"id":"8446829641","secret":"9030bde2c0","server":"8220","farm":9,"title":"Snowkiting
+        on \u00c5resj\u00f6n","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2012-12-31
+        08:55:49","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm9.staticflickr.com\/8220\/8446829641_9030bde2c0_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm9.staticflickr.com\/8220\/8446829641_9030bde2c0_t.jpg","height_t":"67","width_t":"100","url_s":"https:\/\/farm9.staticflickr.com\/8220\/8446829641_9030bde2c0_m.jpg","height_s":"160","width_s":"240","url_m":"https:\/\/farm9.staticflickr.com\/8220\/8446829641_9030bde2c0.jpg","height_m":"333","width_m":"500","url_o":"https:\/\/farm9.staticflickr.com\/8220\/8446829641_e3f5c4e36f_o.jpg","height_o":"2672","width_o":"4016"},{"id":"6956423592","secret":"0138791a9d","server":"8160","farm":9,"title":"DSC_2659.jpg","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2012-03-21
+        05:13:05","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm9.staticflickr.com\/8160\/6956423592_0138791a9d_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm9.staticflickr.com\/8160\/6956423592_0138791a9d_t.jpg","height_t":"100","width_t":"67","url_s":"https:\/\/farm9.staticflickr.com\/8160\/6956423592_0138791a9d_m.jpg","height_s":"240","width_s":"160","url_m":"https:\/\/farm9.staticflickr.com\/8160\/6956423592_0138791a9d.jpg","height_m":"500","width_m":"333","url_o":"https:\/\/farm9.staticflickr.com\/8160\/6956423592_2c62c24de8_o.jpg","height_o":"1600","width_o":"1065"},{"id":"8235220926","secret":"f94085b097","server":"8067","farm":9,"title":"Ozone
+        demodag i \u00d6stersund","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2012-10-30
+        07:55:05","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm9.staticflickr.com\/8067\/8235220926_f94085b097_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm9.staticflickr.com\/8067\/8235220926_f94085b097_t.jpg","height_t":"67","width_t":"100","url_s":"https:\/\/farm9.staticflickr.com\/8067\/8235220926_f94085b097_m.jpg","height_s":"160","width_s":"240","url_m":"https:\/\/farm9.staticflickr.com\/8067\/8235220926_f94085b097.jpg","height_m":"333","width_m":"500","url_o":"https:\/\/farm9.staticflickr.com\/8067\/8235220926_dd226403df_o.jpg","height_o":"2832","width_o":"4256"},{"id":"8234167823","secret":"28bd0cabe4","server":"8479","farm":9,"title":"DSC_4202.jpg","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0,"datetaken":"2012-10-30
+        07:51:39","datetakengranularity":"0","datetakenunknown":0,"url_q":"https:\/\/farm9.staticflickr.com\/8479\/8234167823_28bd0cabe4_q.jpg","height_q":"150","width_q":"150","url_t":"https:\/\/farm9.staticflickr.com\/8479\/8234167823_28bd0cabe4_t.jpg","height_t":"100","width_t":"67","url_s":"https:\/\/farm9.staticflickr.com\/8479\/8234167823_28bd0cabe4_m.jpg","height_s":"240","width_s":"160","url_m":"https:\/\/farm9.staticflickr.com\/8479\/8234167823_28bd0cabe4.jpg","height_m":"500","width_m":"333","url_o":"https:\/\/farm9.staticflickr.com\/8479\/8234167823_a5fe28e285_o.jpg","height_o":"4256","width_o":"2832"}],"page":1,"per_page":500,"perpage":500,"pages":1,"total":"10","title":"Showcase"},"stat":"ok"}'
+    http_version: 
+  recorded_at: Thu, 21 May 2015 18:39:30 GMT
+recorded_with: VCR 2.9.3

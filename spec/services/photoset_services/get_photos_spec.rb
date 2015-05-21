@@ -64,6 +64,11 @@ RSpec.describe PhotosetServices::GetPhotos do
     expect(photos.first.title).to eq 'Yet another sunset pic.'.reverse
   end
 
+  it "clear the photos association to avoid duplicates" do
+    expect(photoset.photos).to receive(:clear)
+    service.call
+  end
+
   it "returns an association" do
     expect(service.call).to be_a ActiveRecord::Associations::CollectionProxy
   end

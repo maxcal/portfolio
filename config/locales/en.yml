@@ -34,6 +34,7 @@ en:
     confirm_destroy: Are you sure? Note that this does not remove the photoset from Flickr.
     edit: 'Edit'
     new: 'Import photosets from Flickr'
+    refresh: Refresh
   photosets:
     crud_buttons:
       destroy: 'Delete'
