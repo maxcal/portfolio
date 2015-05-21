@@ -28,13 +28,6 @@ RSpec.describe PhotosetServices::GetList do
       service.call(foo: :bar)
     end
 
-    it 'imports photosets if they already exist' do
-      allow(flickr_client).to receive_message_chain(:photosets, :getList).and_return([ { 'id' => 'ABC_123' } ])
-      expect_any_instance_of(Photoset::ActiveRecord_Relation).to \
-        receive(:find_or_initialize_by).with(flickr_uid: 'ABC_123')
-      service.call
-    end
-
     it 'takes a block which operates on each photoset' do
       photosets = service.call { |set, raw| set.title = raw['title'].reverse }
       expect(photosets.first.title).to eq 'Kitties Gone Wild Volume 69'.reverse
