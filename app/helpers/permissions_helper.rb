@@ -20,7 +20,7 @@ module PermissionsHelper
     end
     actions.keep_if { |action| can? action, resource }.each_with_object({}) do |action, hash|
       url_params = { action: action, controller: controller, id: resource }.merge(kwargs[:url_extras].to_h)
-      txt = t("#{ i18n_key }.#{action}")
+      txt = t("#{ i18n_key }.#{action}", default: t("crud_buttons.#{action}"))
       if resource.is_a? Class
         url_params.except!(:id)
       end
@@ -29,7 +29,9 @@ module PermissionsHelper
         when :destroy
           options.merge!(
               method: :delete,
-              data: { confirm: t("#{ i18n_key }.confirm_#{action}") }.merge(options[:data].to_h)
+              data: {
+                  confirm: t("#{ i18n_key }.confirm_#{action}", default: t('crud_buttons.confirm_destroy'))
+              }.merge(options[:data].to_h)
           )
         when :refresh
           options.merge!(

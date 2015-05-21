@@ -35,6 +35,11 @@ en:
     edit: 'Edit'
     new: 'Import photosets from Flickr'
     refresh: Refresh
+  crud_buttons:
+    new: New
+    edit: Edit
+    destroy: Delete
+    confirm_destroy: Are you sure?
   photosets:
     crud_buttons:
       destroy: 'Delete'
