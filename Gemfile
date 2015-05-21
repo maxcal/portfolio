@@ -54,10 +54,8 @@ group :test do
   gem 'poltergeist', '~> 1.6.0' # Phantom.js driver for Capybara
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'spring-commands-rspec', '~> 1.0.4'
-  if `uname` =~ /Darwin/
-    gem 'terminal-notifier-guard'
-    gem 'rb-fsevent'
-  end
+  gem 'terminal-notifier-guard',  require: false
+  gem 'rb-fsevent', require: false
 end
 
 group :production do
