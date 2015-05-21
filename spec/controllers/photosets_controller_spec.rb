@@ -190,4 +190,38 @@ RSpec.describe PhotosetsController, type: :controller do
       end
     end
   end
+
+  describe 'PATCH #refresh' do
+    let(:action) do |ex|
+      VCR.use_cassette('refreshing_a_photoset') do
+        patch :refresh, id: photoset, format: ex.metadata[:format]
+      end
+    end
+
+    let(:photoset) { create(:photoset, flickr_uid: "72157647753138397", user: admin) }
+
+    it_should_behave_like "an authorized action"
+
+    context 'when authorized', valid_session: true do
+      it "refreshes photoset attributes" do
+        action
+        expect(assigns(:photoset).title).to eq "Showcase"
+      end
+      it "redirects to photoset" do
+        action
+        expect(response).to redirect_to photoset
+      end
+
+      it "notifies the user of success" do
+        action
+        expect(controller.flash[:notice]).to eq I18n.t('photosets.flash.update.success')
+      end
+
+      it "notifies the user of failure" do
+        allow_any_instance_of(PhotosetServices::RefreshPhotoset).to receive(:call).and_return(false)
+        action
+        expect(controller.flash[:error]).to eq I18n.t('photosets.flash.update.failure')
+      end
+    end
+  end
 end

@@ -1,5 +1,5 @@
 class PhotosetsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:refresh]
   respond_to :html, :json
 
   def show
@@ -48,6 +48,18 @@ class PhotosetsController < ApplicationController
       flash[:notice] = t('photosets.flash.destroy.failure')
     end
     respond_with(@photoset)
+  end
+
+  def refresh
+    @photoset = Photoset.find(params[:id])
+    authorize! :update, @photoset
+    updated = PhotosetServices::RefreshPhotoset.new(@photoset).call
+    if updated
+      flash[:notice] = t('photosets.flash.update.success')
+    else
+      flash[:error] = t('photosets.flash.update.failure')
+    end
+    respond_with @photoset
   end
 
   def photoset_params

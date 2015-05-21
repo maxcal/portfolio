@@ -14,7 +14,8 @@ Portfolio::Application.routes.draw do
   end
 
   resources :photosets do
-
+    member do
+      patch :refresh
+    end
   end
-
 end

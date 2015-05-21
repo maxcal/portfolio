@@ -2,4 +2,4 @@
   %h1= @photoset.title
   %section.description= @photoset.description
   =render partial: 'lightbox', locals: { photos: @photoset.photos } if @photoset.photos.any?
-  =render partial: 'shared/crud_buttons', locals: { resource: @photoset }
+  =render partial: 'shared/crud_buttons', locals: { resource: @photoset, actions: [:destroy, :refresh]}

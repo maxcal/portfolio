@@ -11,7 +11,6 @@ module PermissionsHelper
   def crud_links_for_resource(resource,  actions = nil, **kwargs)
     i18n_key = resource.model_name.i18n_key
     controller = kwargs[:controller] || i18n_key.to_s.pluralize
-    url_extras = kwargs[:url_extras] || {}
     unless actions
       if resource.is_a? Class
         actions = [:new]
@@ -20,7 +19,7 @@ module PermissionsHelper
       end
     end
     actions.keep_if { |action| can? action, resource }.each_with_object({}) do |action, hash|
-      url_params = { action: action, controller: controller, id: resource }.merge(url_extras)
+      url_params = { action: action, controller: controller, id: resource }.merge(kwargs[:url_extras].to_h)
       txt = t("#{ i18n_key }.#{action}")
       if resource.is_a? Class
         url_params.except!(:id)
@@ -31,6 +30,10 @@ module PermissionsHelper
           options.merge!(
               method: :delete,
               data: { confirm: t("#{ i18n_key }.confirm_#{action}") }.merge(options[:data].to_h)
+          )
+        when :refresh
+          options.merge!(
+              method: :patch
           )
         else
       end
