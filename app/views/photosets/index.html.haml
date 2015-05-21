@@ -8,3 +8,5 @@
         .media-body
           %h3.title= photoset.title
           .description= photoset.description
+
+= render partial: 'shared/crud_buttons', locals: { resource: Photoset }

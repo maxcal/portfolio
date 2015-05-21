@@ -1,0 +1,5 @@
+- actions = crud_links_for_resource(resource, { class: 'button' })
+- if actions.any?
+  %ul.button-group
+    - actions.each do |a, l|
+      %li{ class: a.to_s }= l

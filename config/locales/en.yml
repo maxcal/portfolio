@@ -29,8 +29,16 @@ en:
       destroy:
         success: 'User deleted'
         success_self: 'We are sorry to see you go, come back any time'
-
+  photoset:
+    destroy: 'Delete'
+    confirm_destroy: Are you sure? Note that this does not remove the photoset from Flickr.
+    edit: 'Edit'
+    new: 'Import photosets from Flickr'
   photosets:
+    crud_buttons:
+      destroy: 'Delete'
+      confirm_destroy: Are you sure? Note that this does not remove the photoset from Flickr.
+      edit: 'Edit'
     new:
       import: 'Import'
       import_from_flickr: 'Import photosets from Flickr'

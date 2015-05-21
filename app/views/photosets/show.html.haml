@@ -2,7 +2,4 @@
   %h1= @photoset.title
   %section.description= @photoset.description
   =render partial: 'lightbox', locals: { photos: @photoset.photos } if @photoset.photos.any?
-
-  %ul.button-group
-    %li= link_to(t('.edit'), edit_photoset_path(@photoset)) if can?(:edit, @photoset)
-    %li= link_to(t('.destroy'), @photoset, method: 'delete', confirm: t('.confirm_delete_photoset'))
+  =render partial: 'shared/crud_buttons', locals: { resource: @photoset }
