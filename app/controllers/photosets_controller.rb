@@ -51,6 +51,16 @@ class PhotosetsController < ApplicationController
   end
 
   def photoset_params
-    params.require(:photoset).permit(:title, :description, :flickr_uid, primary_photo_attributes: [:flickr_uid, :square])
+    primary_flickr_uid = params.require(:photoset).permit(primary_photo_attributes: [:flickr_uid])
+                                                  .try(:[], 'primary_photo_attributes')
+                                                  .try(:[], 'flickr_uid')
+    photo = Photo.find_by(flickr_uid: primary_flickr_uid)
+    if photo
+      params.require(:photoset)
+            .permit(:title, :description, :flickr_uid).merge(primary_photo: photo)
+    else
+      params.require(:photoset)
+            .permit(:title, :description, :flickr_uid, primary_photo_attributes: [:flickr_uid, :square])
+    end
   end
 end

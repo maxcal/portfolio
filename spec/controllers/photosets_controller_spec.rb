@@ -63,7 +63,10 @@ RSpec.describe PhotosetsController, type: :controller do
     let(:action) do |e|
       VCR.use_cassette('creating_a_photoset') do
         post :create,
-             photoset: attributes_for(:photoset, flickr_uid: '72157642806447225'),
+             photoset: attributes_for(:photoset, flickr_uid: '72157642806447225', primary_photo_attributes: {
+                 flickr_uid: 'photo_123',
+                 url_sq: 'url_sq.jpg'
+             }),
              format: e.metadata[:format]
       end
     end
@@ -76,6 +79,7 @@ RSpec.describe PhotosetsController, type: :controller do
           .to receive(:valid?).and_return(false) if example.metadata[:invalid]
         action unless example.metadata[:skip_request]
       end
+
       context 'with valid params' do
         it 'creates a photoset', skip_request: true do
           expect {
@@ -91,10 +95,21 @@ RSpec.describe PhotosetsController, type: :controller do
           expect(assigns(:photoset).photos.count).to eq 11
         end
       end
+
+      context 'when primary photo already exists', skip_request: true do
+        before { create(:photoset, flickr_uid: 'photo_123') }
+        it "does not try to create a new photo" do
+          expect {
+            action
+          }.to_not raise_error
+        end
+      end
+
       context 'with invalid params', invalid: true do
         it { should render_template :new }
         it { should have_http_status :ok }
       end
+
       context 'as JSON', format: :json do
         it { should have_http_status :created }
       end
