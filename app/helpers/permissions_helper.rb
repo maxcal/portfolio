@@ -1,12 +1,11 @@
 module PermissionsHelper
   # Generates a hash of links to edit or destroy a resource
-  # @param [Instance|Class] resource
-  # @param [Actions] (optional) a list of crud actions to create links to.
+  # @param [ActiveRecord::Base|Class] resource
+  # @param [Array] actions (optional) a list of crud actions to create links to.
   #   defaults to
-  # @param [Hash] kwargs optional hash to pass to link to
   # @option kwargs [String] :controller - controller name to use.
   #   Otherwise a guess is performed based on the resource class name.
-  # @option kwargs [Hash] url_extras - passed to url_for. Can be used for nested resources.
+  # @option kwargs [Hash] :url_extras - passed to url_for. Can be used for nested resources.
   # @return [Hash] a list of links to actions which the user is allowed to perform
   def crud_links_for_resource(resource,  actions = nil, **kwargs)
     i18n_key = resource.model_name.i18n_key

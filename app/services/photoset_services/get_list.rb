@@ -1,6 +1,8 @@
 module PhotosetServices
+  # Imports photosets from `flickr.photosets.getList`.
+  # @note Filters out photosets which have already been imported.
+  # @note The photosets are not persisted.
   class GetList
-
   # @param [User] user (required)
   # @param [Flickraw::Flickr] client (optional) can be used in tests to stub out flickraw
   def initialize(user, client: flickr)
@@ -8,14 +10,11 @@ module PhotosetServices
     @client = client
   end
 
-  # Imports photosets from `flickr.photosets.getList`.
-  #   Filters out photosets which have already been imported.
-  # @note The photos are not persisted.
-  # @param [Hash] **kwargs (optional) any additional hash arguments forwarded to the api call.
+  # @param [Hash] kwargs Any additional hash arguments are forwarded to the api call.
   # @yield [photoset, raw_data] - yields the Photoset and raw data to the optional block.
   # @return [Array] an array of new Photoset.
   # @see https://www.flickr.com/services/api/flickr.photosets.getList.html
-  def call **kwargs
+  def call **kwargs, &block
     existing_photosets = Photoset.pluck(:flickr_uid)
     api_options = kwargs.merge(
         user_id: @user.flickr_uid,
