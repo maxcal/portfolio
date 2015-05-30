@@ -13,6 +13,8 @@ en:
         default: 'Sign in failure, error: %{message}'
         invalid_credentials: 'Invalid credentials'
   users:
+    crud_buttons:
+      edit_profile: 'Edit profile'
     show:
       edit_profile: 'Edit profile'
     edit:

@@ -11,7 +11,7 @@ RSpec.feature "User profile management" do
   scenario "a user can edit his profile" do
     visit root_path
     click_link I18n.t('sessions.menu.profile')
-    click_link I18n.t('users.show.edit_profile')
+    click_link I18n.t('crud_buttons.edit')
     page.fill_in I18n.t('simple_form.labels.user.name'), with: 'New Name'
     click_button 'Update User'
     expect(page).to have_content 'New Name'
