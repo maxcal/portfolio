@@ -8,9 +8,6 @@ common: &common
   encoding: utf8
   template: template0 # Required for UTF8 encoding
   # When using postgress.app for example you do not want to specify user / pw
-
-
-local: &local
   <% if ENV["PORTFOLIO_POSTGRES_USER"] %>
   username: <%= ENV["PORTFOLIO_POSTGRES_USER"] %>
   <% end %>
@@ -21,7 +18,6 @@ local: &local
 
 development:
   <<: *common
-  <<: *local
   database: <%= ENV["REMOTE_WIND_POSTGRES_DATABASE_DEV"] || "portfolio_dev" %>
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
