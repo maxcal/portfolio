@@ -1,5 +1,9 @@
 Portfolio::Application.routes.draw do
 
+  namespace :site do
+    resources :configurations
+  end
+
   root to: 'pages#home'
 
   namespace :auth do

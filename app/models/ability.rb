@@ -17,6 +17,7 @@ class Ability
     if user.has_role?(:admin)
       can :crud, Photoset
       can :refresh, Photoset
+      can :crud, Site::Configuration
     end
   end
 end

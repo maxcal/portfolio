@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :site_configuration, :class => 'Site::Configuration', aliases: [:config] do
     sequence(:name) {|n|  "Config-#{n}" }
-    status 1
+    status :disabled
     site_title "Example Site Title"
   end
 end

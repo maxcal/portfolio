@@ -17,5 +17,6 @@ RSpec.describe Ability do
   context 'admins' do
     let(:user) { build_stubbed(:admin) }
     it { should be_able_to :crud, Photoset }
+    it { should be_able_to :crud, Site::Configuration }
   end
 end
