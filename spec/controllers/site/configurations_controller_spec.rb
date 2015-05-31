@@ -21,8 +21,8 @@ RSpec.describe Site::ConfigurationsController, type: :controller do
       before { action }
       it { should have_http_status :success }
       it { should render_template :index }
-      it "assigns all site_configurations as @site_configurations" do
-        expect(assigns(:site_configurations)).to eq([config])
+      it "assigns all configurations as @configurations" do
+        expect(assigns(:configurations)).to eq([config])
       end
     end
   end
@@ -35,8 +35,8 @@ RSpec.describe Site::ConfigurationsController, type: :controller do
       before { action }
       it { should have_http_status :success }
       it { should render_template :show }
-      it "assigns the requested site_configuration as @site_configuration" do
-        expect(assigns(:site_configuration)).to eq(config)
+      it "assigns the requested configuration as @configuration" do
+        expect(assigns(:configuration)).to eq(config)
       end
     end
   end
@@ -49,8 +49,8 @@ RSpec.describe Site::ConfigurationsController, type: :controller do
       before { action}
       it { should render_template :new }
       it { should have_http_status :success }
-      it "assigns a new site_configuration as @site_configuration" do
-        expect(assigns(:site_configuration)).to be_a_new(Site::Configuration)
+      it "assigns a new configuration as @configuration" do
+        expect(assigns(:configuration)).to be_a_new(Site::Configuration)
       end
     end
   end
@@ -63,8 +63,8 @@ RSpec.describe Site::ConfigurationsController, type: :controller do
       before { action }
       it { should render_template :edit }
       it { should have_http_status :success }
-      it "assigns the requested site_configuration as @site_configuration" do
-        expect(assigns(:site_configuration)).to eq(config)
+      it "assigns the requested configuration as @configuration" do
+        expect(assigns(:configuration)).to eq(config)
       end
     end
   end
@@ -72,7 +72,7 @@ RSpec.describe Site::ConfigurationsController, type: :controller do
   describe "POST #create" do
     let(:valid_attributes) { attributes_for(:config) }
     let(:invalid_attributes) { { site_title: nil } }
-    let(:action) { post :create, site_configuration: valid_attributes  }
+    let(:action) { post :create, configuration: valid_attributes  }
 
     it_should_behave_like 'an authorized action'
 
@@ -83,18 +83,18 @@ RSpec.describe Site::ConfigurationsController, type: :controller do
         it "creates a new Site::Configuration", skip_request: true do
           expect { action }.to change(Site::Configuration, :count).by(1)
         end
-        it "assigns a newly created site_configuration as @site_configuration" do
-          expect(assigns(:site_configuration)).to be_a(Site::Configuration)
-          expect(assigns(:site_configuration)).to be_persisted
+        it "assigns a newly created configuration as @configuration" do
+          expect(assigns(:configuration)).to be_a(Site::Configuration)
+          expect(assigns(:configuration)).to be_persisted
         end
         it { should redirect_to(Site::Configuration.last) }
       end
 
       context "with invalid params" do
-        let(:action) { post :create, { site_configuration: invalid_attributes } }
-        it "assigns a newly created but unsaved site_configuration as @site_configuration" do
+        let(:action) { post :create, configuration: invalid_attributes }
+        it "assigns a newly created but unsaved configuration as @configuration" do
           action
-          expect(assigns(:site_configuration)).to be_a_new(Site::Configuration)
+          expect(assigns(:configuration)).to be_a_new(Site::Configuration)
         end
         it "re-renders the 'new' template" do
           action
@@ -106,25 +106,25 @@ RSpec.describe Site::ConfigurationsController, type: :controller do
 
   describe "PUT #update" do
     let(:new_attributes) { { site_title: 'foo' } }
-    let(:action) { put :update, id: config.to_param, site_configuration: new_attributes }
+    let(:action) { put :update, id: config.to_param, configuration: new_attributes }
 
     it_should_behave_like 'an authorized action'
     context "when authorized", authorized: true do
       before { action }
       context "with valid params" do
-        it "updates the requested site_configuration" do
+        it "updates the requested configuration" do
           expect(config.reload.site_title).to eq 'foo'
         end
-        it "assigns the requested site_configuration as @site_configuration" do
-          expect(assigns(:site_configuration)).to eq(config)
+        it "assigns the requested configuration as @configuration" do
+          expect(assigns(:configuration)).to eq(config)
         end
         it { should redirect_to config }
       end
 
       context "with invalid params" do
         let(:new_attributes) { { site_title: nil } }
-        it "assigns the site_configuration as @site_configuration" do
-          expect(assigns(:site_configuration)).to eq(config)
+        it "assigns the configuration as @configuration" do
+          expect(assigns(:configuration)).to eq(config)
         end
         it { should render_template :edit }
       end
@@ -137,7 +137,7 @@ RSpec.describe Site::ConfigurationsController, type: :controller do
     it_should_behave_like 'an authorized action'
     context "when authorized", authorized: true do
       before {|ex| action unless ex.metadata[:skip_request] }
-      it "destroys the requested site_configuration", skip_request: true do
+      it "destroys the requested configuration", skip_request: true do
         expect { action }.to change(Site::Configuration, :count).by(-1)
       end
       it { should redirect_to action: :index }

@@ -3,7 +3,7 @@
   %head
     %meta{ charset: 'utf-8' }
     %meta{ name:"viewport", content:"width=device-width, initial-scale=1.0" }
-    %title= content_for?(:title) ? yield(:title) : "App_Name"
+    %title=  @config.site_title
     - cache do
       = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Raleway:400,700,300'
       = stylesheet_link_tag "application"
@@ -17,7 +17,7 @@
         - cache do
           %ul.title-area
             %li.name
-              %h1= link_to 'Portfolio', root_path
+              %h1= link_to @config.site_title, root_path
             %li.toggle-topbar.menu-icon
               %a{ href: '#' }
                 %span Menu

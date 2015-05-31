@@ -1,38 +1,38 @@
 class Site::ConfigurationsController < ApplicationController
-  load_and_authorize_resource :site_configuration, class: "Site::Configuration", parent: false
+  load_and_authorize_resource :configuration, class: "Site::Configuration", parent: false
   respond_to :html
 
   def index
-    respond_with(@site_configurations)
+    respond_with(@configurations)
   end
 
   def show
-    respond_with(@site_configuration)
+    respond_with(@configuration)
   end
 
   def new
-    respond_with(@site_configuration)
+    respond_with(@configuration)
   end
 
   def edit
   end
 
   def create
-    @site_configuration.save
-    respond_with(@site_configuration)
+    @configuration.save
+    respond_with(@configuration)
   end
 
   def update
-    @site_configuration.update(site_configuration_params)
-    respond_with(@site_configuration)
+    @configuration.update(configuration_params)
+    respond_with(@configuration)
   end
 
   def destroy
-    @site_configuration.destroy
-    respond_with(@site_configuration)
+    @configuration.destroy
+    respond_with(@configuration)
   end
 
-  def site_configuration_params
-    params.require(:site_configuration).permit(:name, :status, :site_title)
+  def configuration_params
+    params.require(:configuration).permit(:name, :status, :site_title)
   end
 end

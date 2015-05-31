@@ -2,5 +2,7 @@
   - if signed_in?
     %li= link_to(t('.profile'), user_path(current_user.to_param))
     %li= link_to(t('.sign_out'), sessions_path, method: :delete)
+    - if can? :crud, Site::Configuration
+      %li= link_to('Settings', site_configurations_path)
   - else
     %li= link_to(t('.sign_in_with_flickr'), '/auth/flickr')
