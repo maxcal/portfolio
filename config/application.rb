@@ -40,6 +40,7 @@ module Portfolio
       g.integration_tool :rspec
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
       g.view_specs = false
+      g.scaffold_controller :responders_controller
     end
 
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager
