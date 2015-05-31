@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515174931) do
+ActiveRecord::Schema.define(version: 20150531150111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20150515174931) do
 
   add_index "authentications", ["provider", "uid"], name: "index_authentications_on_provider_and_uid", unique: true, using: :btree
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
+
+  create_table "configurations", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "current"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "site_title"
+    t.boolean  "registrations_open"
+  end
 
   create_table "photos", force: :cascade do |t|
     t.string   "flickr_uid"
@@ -75,6 +84,16 @@ ActiveRecord::Schema.define(version: 20150515174931) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "site_configurations", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "status"
+    t.string   "site_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "site_configurations", ["name"], name: "index_site_configurations_on_name", unique: true, using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "nickname"
@@ -94,6 +113,29 @@ ActiveRecord::Schema.define(version: 20150515174931) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "version_associations", force: :cascade do |t|
+    t.integer "version_id"
+    t.string  "foreign_key_name", null: false
+    t.integer "foreign_key_id"
+  end
+
+  add_index "version_associations", ["foreign_key_name", "foreign_key_id"], name: "index_version_associations_on_foreign_key", using: :btree
+  add_index "version_associations", ["version_id"], name: "index_version_associations_on_version_id", using: :btree
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
+    t.string   "whodunnit"
+    t.jsonb    "object"
+    t.jsonb    "object_changes"
+    t.datetime "created_at"
+    t.integer  "transaction_id"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+  add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
 
   add_foreign_key "authentications", "users"
   add_foreign_key "photosets", "users"
