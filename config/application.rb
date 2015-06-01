@@ -14,12 +14,11 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-
-
 module Portfolio
   class Application < Rails::Application
 
-    config.autoload_paths += Dir[Rails.root.join('app', 'services', '{**}')]
+    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -30,7 +29,7 @@ module Portfolio
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    # config.i18n.default_locale = :en
 
     config.generators do |g|
       g.stylesheets = false
@@ -42,7 +41,5 @@ module Portfolio
       g.view_specs = false
       g.scaffold_controller :responders_controller
     end
-
-    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager
   end
 end
