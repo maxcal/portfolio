@@ -1,0 +1,11 @@
+h1= @configuration.name
+table
+  thead
+    tr
+      th Setting
+      th Value
+  tbody
+    tr
+      td Site Title
+      td= @configuration.site_title
+= link_to 'Back', site_configurations_path

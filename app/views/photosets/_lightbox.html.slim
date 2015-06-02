@@ -1,0 +1,5 @@
+ul.photos.clearing-thumbs data-clearing=true
+  - photos.each do |photo|
+    li.photo id="photo_#{photo.id}"
+      a href=photo.medium
+        img data-caption=photo.title src=photo.square

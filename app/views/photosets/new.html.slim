@@ -1,5 +1,5 @@
 
-%h1= t('.import_from_flickr')
+h1 = t('.import_from_flickr')
 
 = simple_form_for :photosets, url: photosets_path, html: { id: 'import_photosets_form' } do |form|
   .media-list
@@ -7,11 +7,11 @@
   - if @photosets.any?
     - @photosets.each do |photoset, i|
       = simple_fields_for photoset do |f|
-        %fieldset.photoset.media
+        fieldset.photoset.media
           .media-object
-            %img{ src: photoset.primary_photo.square }
+            img src=photoset.primary_photo.square
           .media-body
-            %legend= photoset.title
+            legend= photoset.title
             = field_for_photoset(photoset, :flickr_uid)
             = field_for_photoset(photoset, :title)
             = field_for_photoset(photoset, :description)
@@ -19,7 +19,7 @@
             - if photoset.primary_photo
               = field_for_primary_photo(photoset.primary_photo, :flickr_uid)
             = f.button :submit, class: 'small'
-            %p.message.success.invisible= t('photosets.flash.create.success', title: photoset.title)
-            %p.message.failure.invisible= t('photosets.flash.create.failure', title: photoset.title)
+            p.message.success.invisible= t('photosets.flash.create.success', title: photoset.title)
+            p.message.failure.invisible= t('photosets.flash.create.failure', title: photoset.title)
   - else
-    %p.alert-box.secondary= t('.nothing_to_import')
+    p.alert-box.secondary = t('.nothing_to_import')

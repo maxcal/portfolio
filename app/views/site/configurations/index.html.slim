@@ -1,0 +1,15 @@
+h1 Listing Site Configurations
+
+table
+  thead
+    tr
+      th Name
+      th*{ colspan: 2 } Actions
+  tbody
+    - @configurations.each do |config|
+      tr
+        td= link_to config.name, config
+        td= link_to 'Edit', edit_site_configuration_path(config)
+        td= link_to 'Destroy', config, method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'New Configuration', new_site_configuration_path

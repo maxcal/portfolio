@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe 'photosets/new.html.haml' do
+RSpec.describe 'photosets/new.html.slim' do
 
   let(:user) { build_stubbed(:user) }
   let(:photosets) { (1..5).map { build_stubbed(:photoset, user: user, primary_photo: build_stubbed(:photo)) } }

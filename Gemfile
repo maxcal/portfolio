@@ -25,7 +25,7 @@ gem 'warden', '~> 1.2.3' # Rack middleware that provides authentication
 gem 'omniauth-flickr', '~> 0.0.15' # Flickr Oauth authentication flow
 gem 'cancancan', '~> 1.10.1' # Simple authorization solution for Rails
 gem 'rolify', '~> 4.0.0' # Roles library without any authorization enforcement
-gem 'haml', '~> 4.0.6'
+gem 'slim-rails', '~> 3.0.1'
 
 group :doc do
   gem 'yard', '~> 0.8.7.6'
