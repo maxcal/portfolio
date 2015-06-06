@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
-
 ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 gem 'flickraw-cached', '~> 20120701'
 gem 'responders', '~> 2.1.0' # A set of Rails responders to dry up your application
+gem 'kramdown', '~> 1.7.0' # kramdown is yet-another-markdown-parser
+gem 'stringex', '~> 2.5.2' # Useful extensions to Ruby's String class
 
 #=== Front-end ==============================
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets

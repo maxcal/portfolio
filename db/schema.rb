@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150531150111) do
+ActiveRecord::Schema.define(version: 20150606105014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 20150531150111) do
     t.string   "site_title"
     t.boolean  "registrations_open"
   end
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "content"
+    t.text     "compiled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "author_id"
+  end
+
+  add_index "pages", ["author_id"], name: "index_pages_on_author_id", using: :btree
+  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
+  add_index "pages", ["title"], name: "index_pages_on_title", unique: true, using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.string   "flickr_uid"
