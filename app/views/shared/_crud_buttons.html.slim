@@ -1,4 +1,6 @@
-- actions = crud_links_for_resource(resource, actions, { class: 'button' })
+
+- options = local_assigns[:opts].to_h.merge(class: 'button')
+- actions = crud_links_for_resource(resource, actions, options)
 - if actions.any?
   ul.button-group
     - actions.each do |a, l|

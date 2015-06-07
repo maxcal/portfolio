@@ -12,4 +12,6 @@ table
         td= link_to 'Edit', edit_site_configuration_path(config)
         td= link_to 'Destroy', config, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Configuration', new_site_configuration_path
+= render partial: 'shared/crud_buttons', locals: { opts: { controller: 'configurations' }, resource: Site::Configuration }
+
+- breadcrumb :configurations
