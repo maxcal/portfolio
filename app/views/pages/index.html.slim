@@ -1,25 +1,12 @@
-h1 Listing pages
+/- if @pages.any?
+/  ul.pages
+/    - @pages.each do |p|
+/    li.page
+/      = link_to(p.title, p)
+- if @pages.any?
+  ul.pages
+  - @pages.each do |p|
+    li.page = link_to(p.title, p)
 
-table
-  thead
-    tr
-      th Title
-      th Slug
-      th Content
-      th Author
-      th
-      th
-      th
-
-  tbody
-    - @pages.each do |page|
-      tr
-        td = page.title
-        td = page.slug
-        td = page.content
-        td = page.author
-        td = link_to 'Show', page
-        td = link_to 'Edit', edit_page_path(page)
-        td = link_to 'Destroy', page, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 = render partial: 'shared/crud_buttons', locals: { resource: Page }

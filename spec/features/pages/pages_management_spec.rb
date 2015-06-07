@@ -18,9 +18,11 @@ RSpec.feature "Page management", type: :feature do
   scenario "I can edit a page" do
     visit page_path(the_page)
     click_link 'Edit'
+    fill_in 'Content', with: '##Hello World'
     fill_in 'Title', with: 'New Title'
     click_button 'Update Page'
-    expect(page).to have_content 'New Title'
+    expect(page).to have_content  'New Title'
+    expect(page).to have_selector '#hello-world'
   end
 
   scenario "I can delete a page" do

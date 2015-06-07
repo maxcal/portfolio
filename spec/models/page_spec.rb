@@ -24,4 +24,12 @@ RSpec.describe Page, type: :model do
       expect(Page.find_by_slug_or_id(page.slug)).to eq page
     end
   end
+
+  describe '#parse_content' do
+    let(:page) { Page.new(title: 'foo', content: '_Hello World_') }
+    it "parses content on save" do
+      page.save!
+      expect(page.reload.compiled).to match "<p><em>Hello World</em></p>"
+    end
+  end
 end

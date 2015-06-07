@@ -15,9 +15,16 @@ class Page < ActiveRecord::Base
               blacklist: %w{ new, edit, users, photosets },
               blacklist_policy: lambda { |sc| "page-#{sc}" }
 
+  before_save :parse_content, if: ->{ self.content_changed? },unless: -> { self.content.nil? || self.content.empty? }
+
   # @return [String]
   def to_param
     slug || id
   end
 
+  private
+  def parse_content
+    require 'kramdown'
+    self.compiled =  Kramdown::Document.new(content).to_html
+  end
 end
