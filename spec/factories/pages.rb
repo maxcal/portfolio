@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :page do
-    title {|n| "Test Title #{n}"}
+    sequence(:title) {|n| "Test Title #{n}"}
     slug { title.downcase.gsub(' ', '-') }
     content "Hello world"
   end

@@ -5,3 +5,5 @@ article
     = @page.compiled.try(:html_safe)
 
 = render partial: 'shared/crud_buttons', locals: { resource: @page }
+
+- breadcrumb @page

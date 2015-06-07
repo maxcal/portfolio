@@ -4,9 +4,6 @@ ruby '2.1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 gem 'flickraw-cached', '~> 20120701'
-gem 'responders', '~> 2.1.0' # A set of Rails responders to dry up your application
-gem 'kramdown', '~> 1.7.0' # kramdown is yet-another-markdown-parser
-gem 'stringex', '~> 2.5.2' # Useful extensions to Ruby's String class
 
 #=== Front-end ==============================
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
@@ -26,6 +23,12 @@ gem 'warden', '~> 1.2.3' # Rack middleware that provides authentication
 gem 'omniauth-flickr', '~> 0.0.15' # Flickr Oauth authentication flow
 gem 'cancancan', '~> 1.10.1' # Simple authorization solution for Rails
 gem 'rolify', '~> 4.0.0' # Roles library without any authorization enforcement
+
+#== Misc ==================================
+gem 'responders', '~> 2.1.0' # A set of Rails responders to dry up your application
+gem 'gretel', '~> 3.0.8' # makes it easy yet flexible to create breadcrumbs.
+gem 'kramdown', '~> 1.7.0' # kramdown is yet-another-markdown-parser
+gem 'stringex', '~> 2.5.2' # Useful extensions to Ruby's String class
 gem 'slim-rails', '~> 3.0.1'
 
 group :doc do
