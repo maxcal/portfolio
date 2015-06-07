@@ -1,5 +1,6 @@
 class Page < ActiveRecord::Base
   validates_uniqueness_of :title
+  validates_presence_of :title
   belongs_to :author, class_name: 'User'
 
   # @param [Sting|Integer] indentifier, a slug or a numeric or hashed id

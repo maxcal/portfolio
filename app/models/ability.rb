@@ -14,10 +14,12 @@ class Ability
     can :read, User
     can :crud, user # Users should be able to manage their own account.
     can :read, Photoset
+    can :read, Page
     if user.has_role?(:admin)
       can :crud, Photoset
       can :refresh, Photoset
       can :crud, Site::Configuration
+      can :crud, Page
     end
   end
 end

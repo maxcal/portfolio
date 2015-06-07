@@ -30,6 +30,9 @@ html
               =render partial: 'sessions/menu'
           ul.right
             li.has-dropdown
+              = link_to("Pages", pages_path)
+          ul.right
+            li.has-dropdown
               = link_to("Albums", photosets_path, class: "fi-folder")
               - if can? :crud, Photoset
                 ul.dropdown

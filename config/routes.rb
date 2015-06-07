@@ -1,5 +1,7 @@
 Portfolio::Application.routes.draw do
 
+  resources :pages
+
   namespace :site do
     resources :configurations
   end

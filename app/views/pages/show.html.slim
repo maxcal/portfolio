@@ -1,0 +1,7 @@
+article
+  h1 = @page.title
+
+  .content
+    = @page.content
+
+= render partial: 'shared/crud_buttons', locals: { resource: @page }

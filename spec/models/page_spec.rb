@@ -10,7 +10,6 @@ RSpec.describe Page, type: :model do
 
   describe '#to_param' do
     let(:page) { build_stubbed(:page, slug: 'foo-bar') }
-
     it 'creates a slug' do
       expect(page.to_param).to eq 'foo-bar'
     end
