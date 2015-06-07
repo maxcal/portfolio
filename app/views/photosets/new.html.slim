@@ -9,7 +9,7 @@ h1 = t('.import_from_flickr')
       = simple_fields_for photoset do |f|
         fieldset.photoset.media
           .media-object
-            img src=photoset.primary_photo.square
+            img src=photoset.primary_photo.try(:square)
           .media-body
             legend= photoset.title
             = field_for_photoset(photoset, :flickr_uid)
@@ -23,3 +23,5 @@ h1 = t('.import_from_flickr')
             p.message.failure.invisible= t('photosets.flash.create.failure', title: photoset.title)
   - else
     p.alert-box.secondary = t('.nothing_to_import')
+
+  - breadcrumb :new_photoset
